@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './reset.css';
 import './scss/App.scss';
 import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Dashboard from './components/Dashboard/Dashboard';
 
 class App extends Component {
   constructor() {
@@ -21,7 +23,9 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Login />
+        {/* <Login /> */}
+        {/* <Register /> */}
+        <Dashboard />
       </div>
     )
   }

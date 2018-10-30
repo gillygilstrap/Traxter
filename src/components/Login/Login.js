@@ -9,8 +9,8 @@ import './login.scss'
         <i class="fas fa-running"></i>
         <h1>Tra<span className="big-x">X</span>ter</h1>
         <h2>Performance Fitness Tracker</h2>
-        <input type="text" className="login-username-input"/>
-        <input type="password" className="login-password-input"/>
+        <input type="text" className="login-username-input" placeholder="Username"/>
+        <input type="password" className="login-password-input" placeholder="Password"/>
         <button className="login-button">Login</button>
         <button className="register-button">Register</button>
         </div>
