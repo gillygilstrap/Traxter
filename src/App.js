@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './reset.css';
+import './scss/App.scss';
+import Login from './components/Login/Login';
 
 class App extends Component {
   constructor() {
@@ -11,13 +12,20 @@ class App extends Component {
   }
    
   render() {
-    const {loggedIn} = this.state
+    // const {loggedIn} = this.state
+    // return (
+    //   <div>
+    // {loggedIn? {routes}: <Login/>}
+    // </div>
+    // )
+
     return (
-      <div>
-    {loggedIn? {routes}: <Login/>}
-    </div>
+      <div className="app">
+        <Login />
+      </div>
     )
   }
 }
 
 export default App;
+
