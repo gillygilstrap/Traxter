@@ -5,6 +5,8 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddEdit from './components/AddEdit/AddEdit';
+import Profile from './components/Profile/Profile';
+
 
 class App extends Component {
   constructor() {
@@ -24,10 +26,11 @@ class App extends Component {
 
     return (
       <div className="app">
-        {/* <Login /> */}
-        {/* <Register /> */}
-        {/* <Dashboard /> */}
+        <Login />
+        <Register />
+        <Dashboard />
         <AddEdit />
+        <Profile />
       </div>
     )
   }
