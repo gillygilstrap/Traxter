@@ -29,8 +29,9 @@
         letter-spacing: 1px;
     }
 
-    .workout-type {
+    .mid-box {
         display: flex;
+        flex-direction: column;
         width: 80%;
         margin: 26px auto 0 auto;
         align-items: center;
@@ -40,15 +41,31 @@
         box-shadow: 0px 2px 10px $black;
    
     }
-    .workout-type h3 {
+    .mid-box-child {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .mid-box .child-2 {
+       margin-top: 16px;;
+    }
+    .mid-box-child h3 {
         font-size: 24px;
         color: $lightGrey;
         text-shadow: 0px 0px 8px $black;
+        margin-right: 20px;
     }
-    .workout-type button {
+    .mid-box-child button {
         @include type-button;
         width: 32%;
     
+    }
+    .mid-box-child button.future {
+        background: $black;
+    }
+    .mid-box-child button.cardio {
+        background: $black;
     }
     .workout-type button.cardio {
         background: $black;
@@ -100,11 +117,37 @@
         box-shadow: 0px 2px 10px $black;
     }
     .time {
-        margin-top: 24px;
+        margin-top: 18px;
     }
     
     .time h3 {
         margin-right: 56px;
+    }
+
+    .notes-input-box {
+        margin: 18px auto 0 auto;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .notes-input-box h3 {
+        font-size: 24px;
+        color: $lightGrey;
+        margin-right: 16px;
+        text-shadow: 0px 0px 8px $black;
+    }
+
+    .notes-input-box input {
+        margin-top: 12px;
+        height: 36px;
+        border: None;
+        padding: 12px;
+        font-size: 20px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        box-shadow: 0px 2px 10px $black;
     }
     .add-workout-button-div {
         width: 100%;
@@ -122,6 +165,94 @@
         background: $bigGreen;
         box-shadow: 0px 2px 10px $black;
 
+    }
+
+    .workout-content-container {
+        width: 94%;
+        background: $lightGrey;
+        border-radius: 2px;
+        margin: 16px auto 0 auto;
+        padding: 8px;
+    }
+
+    .workout-button-box {
+        display: flex;
+        justify-content: space-between;
+        width: 94%;
+        margin: 0 auto;
+   
+    }
+    .workout-button-box button {
+        margin-top: 12px;
+        margin-bottom: 24px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        height: 25px;
+        border: none;;
+        background: $bigGreen;
+        border-radius: 1px;
+        box-shadow: 0px 2px 10px $black;
+    }
+
+    .title-row {
+        display: flex;
+        flex-direction: column;
+        width: 94%;
+        justify-content: space-between;
+        margin: 0 auto 16px auto;
+        border-bottom: 1px solid $black;
+        padding: 0 8px 4px 8px;
+    }
+
+    .title-row h4 {
+        letter-spacing: 0.5px;
+    }
+    .title-row .workout-name{
+        font-weight: bold;
+        margin-bottom: 6px;
+        font-size: 18px;
+    }
+    .title-row .workout-date {
+        font-size: 16px;
+    }
+    .workout-content-item {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        margin-top: 12px;
+    }
+
+    .workout-content-item .item-name {
+        width: 30%;
+    }
+    .workout-content-item .item-x {
+        width: 18%;
+    }
+
+    .notes-content-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    .notes-content-box .notes-header {
+        width: 20%;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 1px solid $black;
+        padding-bottom: 2px;
+    }
+
+    .notes-content-box .notes-content {
+        margin-top: 8px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        padding: 4px 8px;
     }
 }
 
