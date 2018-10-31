@@ -26,11 +26,11 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Login />
-        <Register />
-        <Dashboard />
+        {/* <Login /> */}
+        {/* <Register /> */}
+        {/* <Dashboard /> */}
         <AddEdit />
-        <Profile />
+        {/* <Profile /> */}
       </div>
     )
   }
