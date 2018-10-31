@@ -61,12 +61,26 @@
         width: 32%;
     
     }
-    .mid-box-child button.future {
+    .type-toggle-div, .date-toggle-div {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+    }
+    .date-toggle-div button {
+        width: 45%;
+    }
+    .type-toggle-div button {
+        width: 45%;
+    }
+    
+    #cardio-black, #weights-black, #today-black, #future-black {
         background: $black;
     }
-    .mid-box-child button.cardio {
-        background: $black;
-    }
+    
+    // .mid-box-child button.cardio {
+    //     background: $black;
+    // }
     .workout-type button.cardio {
         background: $black;
         color: $lightGrey;

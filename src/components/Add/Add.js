@@ -3,7 +3,33 @@ import './add.scss'
 import DashTop from '../DashTop/DashTop'
 
 class Add extends Component {
+    constructor() {
+        super()
+        this.state = {
+            cardio: true,
+            weights: false,
+            today: true,
+            future: false
+        }
+        this.handleTypeClick = this.handleTypeClick.bind(this);
+        this.handleDateClick = this.handleDateClick.bind(this);
+    }
+
+    handleTypeClick() {
+        this.setState({
+            cardio: !this.state.cardio,
+            weights: !this.state.weights
+        })
+    }
+
+    handleDateClick() {
+        this.setState({
+            today: !this.state.today,
+            future: !this.state.future
+        })
+    }
   render() {
+
     return (
 
         <div className="add-main">
@@ -31,14 +57,36 @@ class Add extends Component {
                 
                 <div className="mid-box-child child-1">
                     <h3 className="date">Date:</h3>
-                    <button className="today">Today</button>
-                    <button className="future">Future</button>
+
+                    {
+                        this.state.today?
+                        <div className='date-toggle-div'>
+                            <button id="today-black" onClick={this.handleDateClick} className="today">Today</button>
+                            <button onClick={this.handleDateClick} className="future">Future</button>
+                        </div>
+                        :
+                        <div className='date-toggle-div'>
+                            <button onClick={this.handleDateClick} className="today">Today</button>
+                            <button id="future-black" onClick={this.handleDateClick} className="future">Future</button>
+                        </div>     
+                    }
                 </div>
 
                 <div className="mid-box-child child-2">
                     <h3 className="type">Type:</h3>
-                    <button className="cardio">Cardio</button>
-                    <button className="weights">Weights</button>
+                    {
+                        this.state.cardio?
+                        <div className="type-toggle-div">
+                        <button id='cardio-black' onClick={this.handleTypeClick} className="cardio selected">Cardio</button>
+                        <button onClick={this.handleTypeClick} className="weights">Weights</button>
+                        </div>
+                        :
+                        <div className="type-toggle-div">
+                        <button onClick={this.handleTypeClick} className="cardio ">Cardio</button>
+                        <button id='weights-black' onClick={this.handleTypeClick} className="weights selected">Weights</button>
+                        </div>
+                    }
+                    
                 </div>
             </div>
 
