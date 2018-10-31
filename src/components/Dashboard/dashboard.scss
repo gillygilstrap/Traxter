@@ -1,0 +1,64 @@
+@import '../../scss/_variables';
+@import '../../scss/_mixins';
+
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body  {
+    background: $darkGrey;
+}
+.dashboard-main {
+    background: $darkGrey;
+}
+.dash-fixed-header {
+    width: 100%;
+    position: fixed;
+    box-shadow: 0px 2px 10px $black;
+}
+.clear-fix {
+    height: 105px;
+}
+
+.dashboard-btns-box {
+
+    display: flex;
+    height: 40px;
+    background: $lightGrey;
+    width: 100%;
+    justify-content: space-around;
+    position: sticky;
+
+    button {
+        border: none;
+        width: 40%;
+        font-size: 14px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        font-family: $lato;
+        background: none;
+    }
+}
+
+.performance-feed {
+    font-family: $lato;
+    color: $lightGrey;
+    letter-spacing: 1px;
+    width: 80%;
+    text-align: center;
+    font-size: 30px;
+    margin: 0 auto 0 auto;
+    padding-bottom: 8px;
+    border-bottom: 2px solid $bigGreen;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 10px $black; 
+
+
+}
+
+.workout-card {
+    width: 95%;
+    background: #ffffff;
+    border-radius: 4px;
+    margin: 0 auto 12px auto;
+    padding: 12px
+}

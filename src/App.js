@@ -4,6 +4,7 @@ import './scss/App.scss';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
+import AddEdit from './components/AddEdit/AddEdit';
 
 class App extends Component {
   constructor() {
@@ -25,7 +26,8 @@ class App extends Component {
       <div className="app">
         {/* <Login /> */}
         {/* <Register /> */}
-        <Dashboard />
+        {/* <Dashboard /> */}
+        <AddEdit />
       </div>
     )
   }

@@ -1,0 +1,16 @@
+@import '../../scss/_variables';
+@import '../../scss/_mixins';
+
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+
+.add-main {
+    background: $darkGrey;
+}
+
+.dash-fixed-header {
+    width: 100%;
+    position: fixed;
+    box-shadow: 0px 2px 10px $black;
+}
