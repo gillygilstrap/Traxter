@@ -13,15 +13,26 @@ class Add extends Component {
             distance: '',
             run: true,
             swim: false,
-            cycle: false
+            cycle: false,
+            currentDate: null,
+            futureDate: '12/12/2012'
 
         }
         this.handleTypeClick = this.handleTypeClick.bind(this);
-        this.handleDateClick = this.handleDateClick.bind(this);
-        this.handleRunClick = this.handleRunClick.bind(this)
-        this.handleSwimClick = this.handleSwimClick.bind(this)
-        this.handleCycleClick = this.handleCycleClick.bind(this)
+        this.handleTodayClick = this.handleTodayClick.bind(this);
+        this.handleFutureClick = this.handleFutureClick.bind(this);
+        this.handleRunClick = this.handleRunClick.bind(this);
+        this.handleSwimClick = this.handleSwimClick.bind(this);
+        this.handleCycleClick = this.handleCycleClick.bind(this);
+        this.handleDistanceChange = this.handleDistanceChange.bind(this);
+        this.handleTimeChange = this.handleTimeChange.bind(this);
         // this.handleDistanceChange = this.handleDistanceChange.bing(this)
+    }
+    componentDidMount() {
+        if (this.state.today) {
+            this.grabDate();
+        }
+        
     }
 
     handleTypeClick() {
@@ -29,12 +40,21 @@ class Add extends Component {
             cardio: !this.state.cardio,
             weights: !this.state.weights
         })
+        
     }
 
-    handleDateClick() {
+    handleTodayClick() {
         this.setState({
-            today: !this.state.today,
-            future: !this.state.future
+            today: true,
+            future: false
+        })
+        this.grabDate();
+    }
+    handleFutureClick() {
+        this.setState({
+            today: false,
+            future: true,
+            currentDate: null
         })
     }
 
@@ -61,14 +81,31 @@ class Add extends Component {
             cycle: true
         })
     }
+    handleDistanceChange(e) {
+        this.setState({
+            distance: e.target.value
+        })
+    }
 
-    // handleDistanceChange() {
-    //     this.setState({
+    handleTimeChange(e) {
+        this.setState({
+            time: e.target.value
+        })
+    }
+    grabDate = () => {
+        const today = new Date();
+        const day = today.getDate();
+        const month = today.getMonth() + 1;
+        const year = parseInt(today.getFullYear());
+        const currentDate = month + '/' + day + '/' + year;
+        // console.log('inside grabDate', currentDate)
+        this.setState({
+            currentDate: currentDate
+        })
+    }
 
-    //     })
-    // }
   render() {
-
+console.log(this.state.currentDate)
     return (
 
         <div className="add-main">
@@ -100,13 +137,13 @@ class Add extends Component {
                     {
                         this.state.today?
                         <div className='date-toggle-div'>
-                            <button id="today-black" onClick={this.handleDateClick} className="today">Today</button>
-                            <button onClick={this.handleDateClick} className="future">Future</button>
+                            <button id="today-black" onClick={this.handleTodayClick} className="today">Today</button>
+                            <button onClick={this.handleFutureClick} className="future">Future</button>
                         </div>
                         :
                         <div className='date-toggle-div'>
-                            <button onClick={this.handleDateClick} className="today">Today</button>
-                            <button id="future-black" onClick={this.handleDateClick} className="future">Future</button>
+                            <button onClick={this.handleTodayClick} className="today">Today</button>
+                            <button id="future-black" onClick={this.handleFutureClick} className="future">Future</button>
                         </div>     
                     }
                 </div>
@@ -128,7 +165,10 @@ class Add extends Component {
                     
                 </div>
             </div>
-
+                    <div className={this.state.today? "hide-me": "future-date-div"}>
+                    <h3>Choose Date:</h3>
+                    <input type="text" placeholder="00/00/000"/>
+                    </div>
             {this.state.cardio?
                 <div className="activities-toggle-div">
                 
@@ -144,14 +184,14 @@ class Add extends Component {
                         <div className="type-value">   
                             <div className="distance">
                             <h3 className="type">Distance:</h3>
-                            <input type="text"/>
+                            <input onChange={this.handleDistanceChange} type="text"  value={this.state.distance}/>
                             </div>     
                         </div>
 
                         <div className="type-value">   
                             <div className="time">
                             <h3 className="type">Time:</h3>
-                            <input type="text"/>
+                            <input onChange={this.handleTimeChange} value={this.state.time} type="text"/>
                             </div>     
                         </div>
                     </div>
@@ -206,13 +246,17 @@ class Add extends Component {
             <input type="text" />
             </div>
             <div className="add-workout-button-div">
-                <button className="add-workout-item">Add to Workout</button>
+                <button onClick={this.grabDate} className="add-workout-item">Add to Workout</button>
             </div>
 
             <div className="workout-content-container">
                 <div className="title-row">
                     <h4 className="workout-name">Squat Heathen</h4>
-                    <h4 className="workout-date">10/31/2018</h4>
+                    <h4 className="workout-date">{this.state.currentDate? 
+                this.state.currentDate
+                :
+                this.state.futureDate    
+                }</h4>
                     
                 </div>
 

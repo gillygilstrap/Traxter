@@ -65,7 +65,8 @@
         border: none;
         border-radius: 1px;
         background: $bigGreen;
-        color: $black;
+        color: $lightGrey;
+        text-shadow: 1px 1px 5px $black;
         font-family: $lato;
         font-size: 24px;
         font-weight: bold;
