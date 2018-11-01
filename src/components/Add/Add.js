@@ -6,13 +6,22 @@ class Add extends Component {
     constructor() {
         super()
         this.state = {
-            cardio: true,
-            weights: false,
+            cardio: false,
+            weights: true,
             today: true,
-            future: false
+            future: false,
+            distance: '',
+            run: true,
+            swim: false,
+            cycle: false
+
         }
         this.handleTypeClick = this.handleTypeClick.bind(this);
         this.handleDateClick = this.handleDateClick.bind(this);
+        this.handleRunClick = this.handleRunClick.bind(this)
+        this.handleSwimClick = this.handleSwimClick.bind(this)
+        this.handleCycleClick = this.handleCycleClick.bind(this)
+        // this.handleDistanceChange = this.handleDistanceChange.bing(this)
     }
 
     handleTypeClick() {
@@ -28,6 +37,36 @@ class Add extends Component {
             future: !this.state.future
         })
     }
+
+    handleRunClick() {
+        this.setState({
+            run: true,
+            swim: false,
+            cycle: false
+        })
+    }
+
+    handleSwimClick() {
+        this.setState({
+            run: false,
+            swim: true,
+            cycle: false
+        })
+    }
+
+    handleCycleClick() {
+        this.setState({
+            run: false,
+            swim: false,
+            cycle: true
+        })
+    }
+
+    // handleDistanceChange() {
+    //     this.setState({
+
+    //     })
+    // }
   render() {
 
     return (
@@ -90,27 +129,78 @@ class Add extends Component {
                 </div>
             </div>
 
-            <div className="cardio-activities">
-                    <button className="run">Run</button>
-                    <button className="swim">Swim</button>
-                    <button className="cycle">Cycle</button>
-            </div>
+            {this.state.cardio?
+                <div className="activities-toggle-div">
+                
+                  <div className="cardio-activities">
+                        <button onClick={this.handleRunClick} className={this.state.run? "run-black": "run"}>Run</button>
+                        <button onClick={this.handleSwimClick} className={this.state.swim? "swim-black": "swim"}>Swim</button>
+                        <button onClick={this.handleCycleClick} className={this.state.cycle? "cycle-black": "cycle"}>Cycle</button>
+                        {/* <button className="cycle">Cycle</button> */}
+                  </div>
+                    
+                     
+                    <div className="cardio-values">
+                        <div className="type-value">   
+                            <div className="distance">
+                            <h3 className="type">Distance:</h3>
+                            <input type="text"/>
+                            </div>     
+                        </div>
 
-            <div className="cardio-values">
-                <div className="type-value">   
-                    <div className="distance">
-                    <h3 className="type">Distance:</h3>
-                    <input type="text"/>
-                    </div>     
+                        <div className="type-value">   
+                            <div className="time">
+                            <h3 className="type">Time:</h3>
+                            <input type="text"/>
+                            </div>     
+                        </div>
+                    </div>
                 </div>
+                :
+                <div className="activities-toggle-div">
+                    <div className="lift-type-div"> 
+                        <h3>Lift Type:</h3>
+                        <select>
+                            <option value="bench-press">Bench Press</option>
+                            <option value="incline-press">Incline Press</option>
+                            <option value="shoulder-press">Shoulder Press</option>
+                            <option value="squat">Squat</option>
+                            <option value="dead-left">Deatlift</option>
+                            <option value="push-up">Push-Ups</option>
+                            <option value="pull-up">Pull-Ups</option>
+                            <option value="bent-over-row">Bent Over Row</option>
+                            <option value="curl">Curl</option>
+                            <option value="calf-raise">Calf Raise</option>
+                            <option value="lunge">Lunge</option>
+                        </select>
+                    </div>
 
-                <div className="type-value">   
-                    <div className="time">
-                    <h3 className="type">Time:</h3>
-                    <input type="text"/>
-                    </div>     
+                    <div className="lift-values">
+                        <div className="lift-value">   
+                            <div className="lift-weight">
+                            <h3 className="lift-weight">Weight:</h3>
+                            <input type="text"/>
+                            </div>     
+                        </div>
+
+                        <div className="lift-value">   
+                            <div className="lift-reps">
+                            <h3 className="lift-reps">Reps:</h3>
+                            <input id="lift-reps-input" type="text"/>
+                            </div>     
+                        </div>
+
+                        <div className="lift-value">   
+                            <div className="lift-sets">
+                            <h3 className="lift-weight">Sets:</h3>
+                            <input id="lift-sets-input" type="text"/>
+                            </div>     
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+            }
+           
             <div className="notes-input-box">
             <h3 className="type">Notes:</h3>
             <input type="text" />

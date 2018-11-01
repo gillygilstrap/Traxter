@@ -29,8 +29,8 @@ class App extends Component {
         {/* <Login /> */}
         {/* <Register /> */}
         {/* <Dashboard /> */}
-        <AddEdit />
-        {/* <Profile /> */}
+        {/* <AddEdit /> */}
+        <Profile />
       </div>
     )
   }
