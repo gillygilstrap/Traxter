@@ -6,7 +6,7 @@ import './login.scss'
     return (
       <div className="login-main">
         <div className="login-container">
-        <i class="fas fa-running"></i>
+        <i className="fas fa-running"></i>
         <h1>Tra<span className="big-x">X</span>ter</h1>
         <h2>Performance Fitness Tracker</h2>
         <input type="text" className="login-username-input" placeholder="Username"/>

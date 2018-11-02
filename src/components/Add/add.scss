@@ -12,6 +12,10 @@
     .hide-me {
         display: none;
     }
+    .out-of-site {
+        display: hidden;
+
+    }
 
     .workout-btns {
         width: 65%;
@@ -30,6 +34,31 @@
         background: $bigGreen;
         box-shadow: 0px 2px 10px $black;
         letter-spacing: 1px;
+    }
+    .workout-name-div {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: 16px auto 0 auto;
+        align-items: center;
+    }
+    .workout-name-div h3 {
+        font-size: 24px;
+        color: $lightGrey;
+        text-shadow: 0px 0px 8px $black;
+        margin-right: 20px;
+    }
+    .workout-name-div input {
+        width: 90%;
+        height: 36px;
+        border: None;
+        padding: 12px;
+        font-size: 20px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        box-shadow: 0px 2px 10px $black;
+        margin-top:  14px;
     }
 
     .mid-box {
@@ -256,7 +285,11 @@
     .add-workout-button-div {
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
+    }
+   #completed-button {
+        margin-top: 18px;
     }
     button.add-workout-item {
         width: 50%;
@@ -299,15 +332,35 @@
         border-radius: 1px;
         box-shadow: 0px 2px 10px $black;
     }
+    .title-row-div {
+        display: flex;
+        align-items: center;
+        // background: yellow;
+        border-bottom: 1px solid $black;
+        width: 94%;
+        margin: 0 auto;
+        padding: 0 8px 4px 8px;
+        height: 45px; 
+    }
+    .title-row-div .completed{
+        background: $bigGreen;
+        padding: 10px;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+        border-radius: 1px;
+        color: $lightGrey;
+        text-shadow: 0px 2px 4px $black;
+        box-shadow: 0px 2px 5px $black;
+    
+    }
 
     .title-row {
         display: flex;
         flex-direction: column;
         width: 94%;
         justify-content: space-between;
-        margin: 0 auto 16px auto;
-        border-bottom: 1px solid $black;
-        padding: 0 8px 4px 8px;
+        margin: 0 auto 0 auto;
+
     }
 
     .title-row h4 {
