@@ -63,7 +63,8 @@ class Add extends Component {
     }
     handleChange2(key, value) {
         this.setState({
-            [key]: value
+            [key]: value,
+            useDate: value
         })
     }
 
@@ -433,6 +434,7 @@ class Add extends Component {
                         
                     </div>
                     <div onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</div>
+                    {/* <button onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</button> */}
                 </div>
                 
                { this.state.workout.map(elem => {

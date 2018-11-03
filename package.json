@@ -10,6 +10,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "http-proxy-middleware": "^0.19.0",
+  
     "massive": "^5.5.1",
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
@@ -25,8 +26,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "now":{
-    "alias":"traxter"
+  "now": {
+    "alias": "traxter"
   },
   "eslintConfig": {
     "extends": "react-app"

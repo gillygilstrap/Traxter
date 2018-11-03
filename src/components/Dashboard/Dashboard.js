@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import DashTop from '../DashTop/DashTop';
 import './dashboard.scss';
+import axios from 'axios';
 
 
 class Dashboard extends Component {
+
+
+  componentDidMount() {
+    axios.get('/api/workouts/getAll/1').then(res => {
+      console.log(res.data)
+    })
+  }
   render() {
     return (
       <div className="dashboard-main">
