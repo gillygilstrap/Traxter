@@ -49,6 +49,7 @@ module.exports = {
     },
 
     getAllWorkouts: (req, res) => {
+        // console.log('----------BANG!!!!----------', "top of get all");
         const {id} = req.params
         // console.log(id)
         req.app.get('db').get_all_workouts({id: id}).then(workouts => {
