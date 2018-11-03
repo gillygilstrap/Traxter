@@ -52,9 +52,30 @@ module.exports = {
         const {id} = req.params
         // console.log(id)
         req.app.get('db').get_all_workouts({id: id}).then(workouts => {
-            console.log(_.groupBy(workouts, 'workout_id'))
+            // console.log(_.groupBy(workouts, 'workout_id'))
 
-
+            let reduced = workouts.reduce((r,a) => {
+                r[a.workout_id] = r[a.workout_id] || [];
+                r[a.workout_id].push(a);
+                return r
+              }, Object.create(null));
+              
+              let bigArray = []
+                let x = 1;
+                for (x in reduced) {
+                bigArray.push(reduced[x])
+                x++
+                }
+                // console.log(bigArray)
+                x = 1;
+            //   console.log(reduced)
+            //   let reduced = testArray.reduce((r,a) => {
+            //     r[a.id] = r[a.id] || [];
+            //     r[a.id].push(a);
+            //     return r
+            //   }, Object.create(null));
+              
+            //   console.log(reduced)
 
         //    let num = 1
         //    let tempArray = []
@@ -71,7 +92,7 @@ module.exports = {
                     
             //  } //     
 
-            res.status(200).json(workouts)
+            res.status(200).json(bigArray)
         }).catch(error => {
             console.log("error in getAll Workout", error)
         })
