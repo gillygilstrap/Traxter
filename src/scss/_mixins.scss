@@ -91,6 +91,17 @@
     .workout-content-item .item-x {
         width: 18%;
     }
+    .workout-content-item .item-5 {
+        width: 8%
+    }
+
+    .workout-content-item .item-5 i {
+        background: $bigGreen;
+        padding: 4px;
+        border-radius: 2px;
+        box-shadow: 0px 2px 5px $black;
+    }
+
 
     .notes-content-box {
         display: flex;

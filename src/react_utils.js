@@ -38,6 +38,33 @@ export function dateSorter(data) {
     // console.log(sortedArray)
 }
 
+export function workoutArrayFormatter(arr) {
+    console.log(arr)
+    let tempArr = []
+    for(let i = 0; i< arr.length; i++) {
+        if (arr[i].type === "Cardio") {
+            tempArr.push({
+                colOne: arr[i].type_value,
+                colTwo: arr[i].distance,
+                colThree: arr[i].time,
+                colFour: '',
+                id: arr[i].id,
+                type: arr[i].type
+            })
+        }else {
+            tempArr.push({
+                colOne: arr[i].type_value,
+                colTwo: arr[i].weight,
+                colThree: arr[i].reps,
+                colFour: arr[i].sets,
+                id: arr[i].id,
+                type: arr[i].type
+            })
+        }
+    }
+    return tempArr
+}
+
 
 
 // tempArr.push(tempArr.shift())

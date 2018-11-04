@@ -3,7 +3,9 @@ import './edit.scss'
 import DashTop from '../DashTop/DashTop';
 import axios from "axios";
 import { connect } from 'react-redux';
-import {dateShaper} from '../../react_utils'
+import {dateShaper, workoutArrayFormatter} from '../../react_utils';
+// import {workoutArrayFormatter} from '../../react_utils',
+
 
 class Add extends Component {
     constructor(props) {
@@ -32,7 +34,8 @@ class Add extends Component {
             useDate: '',
             completed: false,
             editDate: null,
-            editItem: false
+            editItem: false,
+            editItemId: null
 
         }
         this.handleCardioClick = this.handleCardioClick.bind(this);
@@ -56,14 +59,18 @@ class Add extends Component {
         this.handleFutureDateChange = this.handleFutureDateChange.bind(this);
         this.sendToFeed = this.sendToFeed.bind(this);
         this.updateCompletedClick = this.updateCompletedClick.bind(this);
+        this.handleEditButtonClicked = this.handleEditButtonClicked.bind(this);
+        this.updateWorkoutItem = this.updateWorkoutItem.bind(this);
+        this.handleAddItemClick = this.handleAddItemClick.bind(this);
 
     }
     componentDidMount() {
         const {workout} = this.props.workout
         const {name, date, note} = this.props.workout[0]
         const useDate = dateShaper(date)
+        const formattedWorkout = workoutArrayFormatter(this.props.workout)
         this.setState({
-            workout: this.props.workout,
+            workout: formattedWorkout,
             workoutName: name,
             editDate: useDate,
             notesValue: note
@@ -261,6 +268,83 @@ class Add extends Component {
             completed: !this.state.completed
         })
     }
+
+    handleEditButtonClicked(colOne, colTwo, colThree, colFour, id, type) {
+        console.log("edit button clicked", colOne, colTwo, colThree, colFour, id , type)
+        if (type === "Cardio") {
+            if (colOne === "Run") {
+                this.setState({
+                    run: true,
+                    swim: false,
+                    cycle: false
+                })
+            } else if (colOne === "Swim") {
+                this.setState({
+                    run: false,
+                    swim: true,
+                    cycle: false
+                })
+            }else {
+                this.setState({
+                    run: false,
+                    swim: false,
+                    cycle: true
+                })
+            }
+            this.setState({
+                editItem: true,
+                cardio: true,
+                weight: false,
+                cardioType: colOne,
+                distanceValue: colTwo,
+                timeValue: colThree,
+                editItemId: id
+
+            })
+        }else {
+            this.setState({
+                editItem: true,
+                cardio: false,
+                weight: true,
+                weightsType: colOne,
+                weightValue: colTwo,
+                repsValue: colThree,
+                setsValue: colFour,
+                editItemId: id
+            })
+        }
+        
+    }
+
+    updateWorkoutItem() {
+        const workoutCopy = this.state.workout.slice()
+        const { editItemId, workout, cardioType, distanceValue, timeValue, weightsType, weightValue, repsValue, setsValue } =  this.state
+        for (let i = 0; i< workoutCopy.length; i++) {
+                if (workoutCopy[i].id === editItemId) {
+                    if (workoutCopy[i].type === "Cardio") {
+                        workoutCopy[i].colOne = cardioType
+                        workoutCopy[i].colTwo = distanceValue
+                        workoutCopy[i].colThree = timeValue
+                    }else {
+                        workoutCopy[i].colOne = weightsType
+                        workoutCopy[i].colTwo = weightValue
+                        workoutCopy[i].colThree = repsValue
+                        workoutCopy[i].colFour = setsValue
+                    }
+                }
+        }
+        this.setState({
+            workout: workoutCopy,
+            editItem: false
+        })
+       
+    }
+
+    handleAddItemClick() {
+        this.setState({
+            editItem: true
+        })
+    }
     
 
 
@@ -278,7 +362,7 @@ class Add extends Component {
 
 
   render() {
-      console.log( this.props.workout)
+      console.log( this.state.workout)
     const bp = "Bench Press"
     const ip = "Incline Press"
     const sp = "Shoulder Press"
@@ -304,10 +388,10 @@ class Add extends Component {
             <div className="clear-fix"></div>
             <h2 className="performance-feed">Edit Workout</h2>
 
-            <div className="workout-btns">
+            {/* <div className="workout-btns">
                 <button onClick={this.newWorkoutClick} className="new-workout">New Workout</button>
                 <button className="my-templates">My Templates</button>
-            </div>
+            </div> */}
 
             
             <div className="workout-name-div">
@@ -315,8 +399,8 @@ class Add extends Component {
                 <input onChange={this.handleWorkoutNameChange} value={this.state.workoutName}type="text"/>
             </div>
 
-            {/* <div className="mid-box"> */}
-            <div className={this.state.editItem? "mid-box": "hide-me"}>
+            <div className="mid-box">
+            {/* <div className={this.state.editItem? "mid-box": "hide-me"}> */}
                 
                 {/* <div className="mid-box-child child-1">
                     <h3 className="date">Date:</h3>
@@ -358,8 +442,8 @@ class Add extends Component {
                     <input onChange={(e) => this.handleChange2('editDate', e.target.value)}type="text" placeholder="00/00/0000" value={this.state.editDate}/>
                     </div>
             {this.state.cardio?
-                // <div className="activities-toggle-div">
-                <div className={this.state.editItem? "activities-toggle-div": "hide-me"}>
+                <div className="activities-toggle-div">
+                {/* // <div className={this.state.editItem? "activities-toggle-div": "hide-me"}> */}
                 
                   <div className="cardio-activities">
                         <button onClick={this.handleRunClick} className={this.state.run? "run-black": "run"}>Run</button>
@@ -386,6 +470,7 @@ class Add extends Component {
                 </div>
                 :
                 <div className="activities-toggle-div">
+                {/* <div className={this.state.editItem? "activities-toggle-div": "hide-me"}> */}
                 
                     <div className="lift-type-div"> 
                         <h3>Lift Type:</h3>
@@ -435,7 +520,11 @@ class Add extends Component {
             <input onChange={this.handleNotesValueChange} value={this.state.notesValue} type="text" />
             </div>
             <div className="add-workout-button-div">
-                <button onClick={this.createWorkoutItem} className="add-workout-item">Add to Workout</button>
+                {/* <button onClick={this.createWorkoutItem} className="add-workout-item">Update Changes</button> */}
+
+                <button onClick={this.createWorkoutItem} className={!this.state.editItem?"add-workout-item": "hide-me"}>Add to Workout</button>
+
+                <button onClick={this.updateWorkoutItem} className={this.state.editItem?"add-workout-item": "hide-me"}>Update Changes</button>
                 <button onClick={this.updateCompletedClick} id="completed-button" className="add-workout-item">Mark Completed</button>
             </div>
 
@@ -457,11 +546,14 @@ class Add extends Component {
                 </div>
                 
                { this.state.workout.map(elem => {
-                   return <div className="workout-content-item">
+                   const {colOne, colTwo, colThree, colFour, id, type} = elem
+                   return <div onClick={() => this.handleEditButtonClicked(colOne, colTwo, colThree, colFour, id, type)} className= "workout-content-item" id={this.state.editItem? "highlight-me": ""}>
                     <div className="item-name">&diams; {elem.colOne}</div>
                     <div className="item-x item-1">{elem.colTwo}</div>
                     <div className="item-x item-2">{elem.colThree}</div>
                     <div className="item-x itme-3">{elem.colFour}</div>
+                    <div  className="item-x item-5"><i class="fas fa-pencil-alt"></i></div>
+
                     </div>
                 })}
 
@@ -472,7 +564,7 @@ class Add extends Component {
                 </div>
             </div>
             <div className={this.state.workoutEmpty? "hide-me": "workout-button-box"}>
-                    <button onClick={this.sendToFeed}className="send-to-feed">Send To Feed</button>
+                    <button onClick={this.sendToFeed}className="send-to-feed">Save Changes</button>
                     <button className="save-as-template">Save As Template</button>
                     <button onClick={this.clearWorkout} className="clear">Clear</button>
                 </div>
