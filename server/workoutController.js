@@ -5,8 +5,6 @@ module.exports = {
     newWorkout: (req, res) => {
         const {completed, workoutName, note, workout, date} = req.body
         const altertedDate = utils.dateToNumber(date)
-        // console.log(workout[0].colOne)
-        // console.log(altertedDate)
         req.app.get('db').create_workout({
             
             name: workoutName, 
@@ -14,7 +12,6 @@ module.exports = {
             completed: completed,
             note: note
         }).then( workouts => {
-                // console.log('workouts', workouts[0].id)
             for (let i = 0; i < workout.length; i++) {
                 if (workout[i].colOne === "Run" || 
                     workout[i].colOne === "Swim" ||
@@ -28,7 +25,7 @@ module.exports = {
                             distance: workout[i].colTwo,
                             time: workout[i].colThree
                         }).then(res => {
-                            console.log(res[0])
+                            // console.log(res[0])
                         })
                     } else {
                         const type = "Weights"
@@ -49,12 +46,9 @@ module.exports = {
     },
 
     getAllWorkouts: (req, res) => {
-        // console.log('----------BANG!!!!----------', "top of get all");
         const {id} = req.params
-        // console.log(id)
         req.app.get('db').get_all_workouts({id: id}).then(workouts => {
-            // console.log(_.groupBy(workouts, 'workout_id'))
-
+            // console.log(workouts)
             let reduced = workouts.reduce((r,a) => {
                 r[a.workout_id] = r[a.workout_id] || [];
                 r[a.workout_id].push(a);
@@ -67,35 +61,29 @@ module.exports = {
                 bigArray.push(reduced[x])
                 x++
                 }
-                // console.log(bigArray)
                 x = 1;
-            //   console.log(reduced)
-            //   let reduced = testArray.reduce((r,a) => {
-            //     r[a.id] = r[a.id] || [];
-            //     r[a.id].push(a);
-            //     return r
-            //   }, Object.create(null));
-              
-            //   console.log(reduced)
-
-        //    let num = 1
-        //    let tempArray = []
-        //     let changerArray[num] = 
-
-        //          if (workouts[i].workout_id == 1) {
-        //     //         obj[i] = {[x] : workouts[i]};
-                    
-        //     //         x++
-        //     //     }else {x=1}
-                
-        //     //     // console.log(obj)
-                
-                    
-            //  } //     
-
             res.status(200).json(bigArray)
         }).catch(error => {
             console.log("error in getAll Workout", error)
+        })
+    },
+
+    deleteWorkout: (req, res) => {
+        console.log('----------BANG!!!!----------' );
+        workout_id = req.params.workoutId
+        console.log(req.params)
+        req.app.get('db').delete_workout_items({
+            workout_id: workout_id
+        }).then(res => {
+            req.app.get('db').delete_workout({
+                workout_id: workout_id
+            }).catch(error => {
+                console.log('There was an Error in delete_workout_items', error)
+            })
+        }).then(response => {
+            res.status(200).send('Item Was Deleted')
+        }).catch(error => {
+            console.log('There was an Error in delete_workout', error)
         })
     }
  }

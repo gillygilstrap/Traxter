@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import DashTop from '../DashTop/DashTop';
 import './dashboard.scss';
 import axios from 'axios';
-import ProductCard from '../ProductCard/ProductCard';
+import WorkoutCard from '../WorkoutCard/WorkoutCard';
+import {dateSorter} from '../../react_utils'
 
 
 class Dashboard extends Component {
@@ -17,7 +18,8 @@ class Dashboard extends Component {
   componentDidMount() {
     axios.get('/api/workouts/getAll/1').then(res => {
       // console.log('----------BANG!!!!----------', );
-      // console.log(res.data)
+      dateSorter(res.data)
+      console.log(res.data)
       this.setState({
         products: res.data
       })
@@ -28,7 +30,7 @@ class Dashboard extends Component {
     const {products} =  this.state
     // console.log(this.state.products)
      const mappedWorkout =  products.map((workout,i) => {
-       return <ProductCard key={i} workout={workout}/>
+       return <WorkoutCard key={i} workout={workout}/>
      })
 
     return (

@@ -446,26 +446,6 @@ class Add extends Component {
                     </div>
                 })}
 
-                {/* <div className="workout-content-item">
-                    <div className="item-name">&diams; Run</div>
-                    <div className="item-x item-1">1 Mile</div>
-                    <div className="item-x item-2">5:59</div>
-                    <div className="item-x itme-3"></div>
-                </div>
-
-                <div className="workout-content-item">
-                    <div className="item-name">&diams; Squat</div>
-                    <div className="item-x item-1">250lbs</div>
-                    <div className="item-x item-2">6 reps</div>
-                    <div className="item-x itme-3">3 sets</div>
-                </div>
-
-                <div className="workout-content-item">
-                    <div className="item-name">&diams; Front Squat</div>
-                    <div className="item-x item-1">225lbs</div>
-                    <div className="item-x item-2">5 reps</div>
-                    <div className="item-x itme-3">3 sets</div>
-                </div> */}
 
                 <div className="notes-content-box">
                     <div className="notes-header">Notes:</div>
