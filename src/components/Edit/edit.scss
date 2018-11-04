@@ -1,0 +1,429 @@
+@import '../../scss/_variables';
+@import '../../scss/_mixins';
+
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+
+.add-main {
+    overflow: none;
+    background: $darkGrey;
+    font-family: $lato;
+    .hide-me {
+        display: none;
+    }
+    .out-of-site {
+        visibility: hidden;
+
+    }
+
+    .workout-btns {
+        width: 65%;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px auto 0 auto;
+    }
+
+    .workout-btns button {
+        width: 45%;
+        height: 40px;
+        border: none;
+        border-radius: 1px;
+        font-family: $lato;
+        font-weight: bold;
+        background: $bigGreen;
+        box-shadow: 0px 2px 10px $black;
+        letter-spacing: 1px;
+    }
+    .workout-name-div {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: 16px auto 0 auto;
+        align-items: center;
+    }
+    .workout-name-div h3 {
+        font-size: 24px;
+        color: $lightGrey;
+        text-shadow: 0px 0px 8px $black;
+        margin-right: 20px;
+    }
+    .workout-name-div input {
+        width: 90%;
+        height: 36px;
+        border: None;
+        padding: 12px;
+        font-size: 20px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        box-shadow: 0px 2px 10px $black;
+        margin-top:  14px;
+    }
+
+    .mid-box {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: 26px auto 0 auto;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid $mediumGrey;
+        padding: 14px;
+        box-shadow: 0px 2px 10px $black;
+   
+    }
+    .mid-box-child {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .mid-box .child-2 {
+       margin-top: 16px;;
+    }
+    .mid-box-child h3 {
+        font-size: 24px;
+        color: $lightGrey;
+        text-shadow: 0px 0px 8px $black;
+        margin-right: 20px;
+    }
+    .mid-box-child button {
+        @include type-button;
+        width: 32%;
+    
+    }
+    .type-toggle-div, .date-toggle-div {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+    }
+    .date-toggle-div button {
+        width: 45%;
+    }
+    .type-toggle-div button {
+        width: 45%;
+    }
+    .future-date-div {
+        display: flex;
+        width: 80%;
+        margin: 22px auto 24px auto;
+        align-items: center;
+    }
+    .future-date-div h3 {
+        font-size: 24px;
+        color: $lightGrey;
+        margin-right: 16px;
+        text-shadow: 0px 0px 8px $black;
+    }
+    .future-date-div input {
+        width: 142px;
+        height: 36px;
+        border: None;
+        padding: 12px;
+        font-size: 20px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        box-shadow: 0px 2px 10px $black;
+ 
+    }
+    
+    #cardio-black, #weights-black, #today-black, #future-black {
+        background: $black;
+    }
+    
+    // .mid-box-child button.cardio {
+    //     background: $black;
+    // }
+    .workout-type button.cardio {
+        background: $black;
+        color: $lightGrey;
+  
+    }
+
+    .cardio-activities {
+        display: flex;
+        width: 80%;
+        margin: 14px auto 0 auto;
+        justify-content: space-between;
+    }
+    .cardio-activities button {
+        @include type-button;
+        width: 25%;
+    }
+    // .cardio-activities button.run {
+    //     background: $black;
+    // }
+
+    .cardio-values  {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: 26px auto 0 auto;
+    }
+    .cardio-values div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .cardio-values h3 {
+        font-size: 24px;
+        color: $lightGrey;
+        margin-right: 16px;
+        text-shadow: 0px 0px 8px $black;
+    }
+    
+    .cardio-values input {
+        width: 140px;
+        height: 36px;
+        border: None;
+        padding: 12px;
+        font-size: 20px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        box-shadow: 0px 2px 10px $black;
+    }
+    .time {
+        margin-top: 18px;
+    }
+    
+    .time h3{
+        margin-right: 56px;
+    }
+    .time input {
+        margin-left: 40px;
+    }
+    .activities-toggle-div h3{
+        font-size: 24px;
+        color: $lightGrey;
+        margin-right: 16px;
+        text-shadow: 0px 0px 8px $black;
+    }
+
+    .lift-type-div {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        margin: 16px auto 0 auto;
+        
+    }
+    .lift-type-div select {
+        height: 36px;
+        font-family: $lato;
+        border: 3px solid $bigGreen;
+        background: $darkGrey;
+        box-shadow: 0px 2px 10px $black;
+        font-size: 16px;
+        font-weight: bold;
+        padding-left: 8px;
+        color: $lightGrey;
+        letter-spacing: 1.5px;
+        
+    }
+    .lift-value input {
+        height: 36px;
+        box-shadow: 0px 2px 10px $black;
+        border: none;
+        width: 163px;
+        padding: 12px;
+        font-size: 20px;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+    }
+    .lift-value div{
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        margin-top: 16px;
+    }
+    .lift-weight input {
+        margin-left: 13px;
+    }
+    #lift-reps-input {
+        margin-left: 39px;
+    }
+
+    #lift-sets-input {
+        margin-left: 46px;
+    }
+    .lift-weight, .lift-reps, .lift-sets {
+        display: flex;
+        align-items: center;
+    }
+
+
+    .notes-input-box {
+        margin: 18px auto 0 auto;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .notes-input-box h3 {
+        font-size: 24px;
+        color: $lightGrey;
+        margin-right: 16px;
+        text-shadow: 0px 0px 8px $black;
+    }
+
+    .notes-input-box input {
+ 
+        margin-top: 12px;
+        height: 36px;
+        border: None;
+        padding: 12px;
+        font-size: 20px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        box-shadow: 0px 2px 10px $black;
+    }
+    .add-workout-button-div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+   #completed-button {
+        margin-top: 18px;
+    }
+    button.add-workout-item {
+        width: 50%;
+        margin: 26px auto 0 auto;
+        height: 30px;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        border-radius: 1px;
+        background: $bigGreen;
+        box-shadow: 0px 2px 10px $black;
+
+    }
+
+    .workout-content-container {
+        @include workout-box;
+        width: 94%;
+        background: $lightGrey;
+        border-radius: 2px;
+        margin: 16px auto 0 auto;
+        padding: 8px;
+        box-shadow: 0px 2px 10px $black;
+    }
+
+    .workout-button-box {
+        display: flex;
+        justify-content: space-between;
+        width: 94%;
+        margin: 0 auto;
+   
+    }
+    .workout-button-box button {
+        margin-top: 12px;
+        margin-bottom: 24px;
+        font-family: $lato;
+        letter-spacing: 1px;
+        font-weight: bold;
+        height: 25px;
+        border: none;;
+        background: $bigGreen;
+        border-radius: 1px;
+        box-shadow: 0px 2px 10px $black;
+    }
+    @include workout-styles;
+    
+    button.cycle-black, button.run-black, button.swim-black {
+         background: $black;
+    }
+}
+
+.dash-fixed-header {
+    width: 100%;
+    position: fixed;
+    box-shadow: 0px 2px 10px $black;
+}
+
+
+// .title-row-div {
+    //     display: flex;
+    //     align-items: center;
+    //     // background: yellow;
+    //     border-bottom: 1px solid $black;
+    //     width: 94%;
+    //     margin: 0 auto;
+    //     padding: 0 8px 4px 8px;
+    //     height: 45px; 
+    // }
+    // .title-row-div .completed{
+    //     background: $bigGreen;
+    //     padding: 10px;
+    //     font-weight: bold;
+    //     letter-spacing: 1.5px;
+    //     border-radius: 1px;
+    //     color: $lightGrey;
+    //     text-shadow: 0px 2px 4px $black;
+    //     box-shadow: 0px 2px 5px $black;
+    
+    // }
+
+    // .title-row {
+    //     display: flex;
+    //     flex-direction: column;
+    //     width: 94%;
+    //     justify-content: space-between;
+    //     margin: 0 auto 0 auto;
+
+    // }
+
+    // .title-row h4 {
+    //     letter-spacing: 0.5px;
+    // }
+    // .title-row .workout-name{
+    //     font-weight: bold;
+    //     margin-bottom: 6px;
+    //     font-size: 18px;
+    // }
+    // .title-row .workout-date {
+    //     font-size: 16px;
+    // }
+    // .workout-content-item {
+    //     display: flex;
+    //     width: 100%;
+    //     justify-content: space-between;
+    //     font-weight: bold;
+    //     letter-spacing: 0.5px;
+    //     margin-top: 12px;
+    // }
+
+    // .workout-content-item .item-name {
+    //     width: 30%;
+    // }
+    // .workout-content-item .item-x {
+    //     width: 18%;
+    // }
+
+    // .notes-content-box {
+    //     display: flex;
+    //     flex-direction: column;
+    //     width: 100%;
+    //     margin-top: 16px;
+    // }
+
+    // .notes-content-box .notes-header {
+    //     width: 20%;
+    //     font-size: 18px;
+    //     font-weight: bold;
+    //     text-align: center;
+    //     border-bottom: 1px solid $black;
+    //     padding-bottom: 2px;
+    // }
+
+    // .notes-content-box .notes-content {
+    //     margin-top: 8px;
+    //     font-weight: bold;
+    //     letter-spacing: 0.5px;
+    //     padding: 4px 8px;
+    // }

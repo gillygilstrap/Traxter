@@ -10,8 +10,9 @@ class Dashboard extends Component {
   constructor() {
     super() 
     this.state = {
-      products: []
+      workout: []
     }
+    this.refresh = this.refresh.bind(this);
   }
 
 
@@ -19,18 +20,21 @@ class Dashboard extends Component {
     axios.get('/api/workouts/getAll/1').then(res => {
       // console.log('----------BANG!!!!----------', );
       dateSorter(res.data)
-      console.log(res.data)
+      // console.log(res.data)
       this.setState({
-        products: res.data
+        workout: res.data
       })
     })
-   
+  }
+
+  refresh() {
+    this.componentDidMount();
   }
   render() {
-    const {products} =  this.state
+    const {workout} =  this.state
     // console.log(this.state.products)
-     const mappedWorkout =  products.map((workout,i) => {
-       return <WorkoutCard key={i} workout={workout}/>
+     const mappedWorkout =  workout.map((workout,i) => {
+       return <WorkoutCard refresh={this.refresh} key={i} workout={workout}/>
      })
 
     return (

@@ -10,13 +10,14 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "http-proxy-middleware": "^0.19.0",
-  
     "massive": "^5.5.1",
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.0"
+    "react-scripts": "2.1.0",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "now-start": "node server/index.js",

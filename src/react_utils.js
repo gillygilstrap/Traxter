@@ -22,10 +22,10 @@ export function dateSorter(data) {
          tempArr.push(data[i][0].date)
 
     }
-    console.log(tempArr)
+    // console.log(tempArr)
     tempArr.sort(function(a,b){return b-a})
-    console.log(tempArr[0])
-    console.log(data)
+    // console.log(tempArr[0])
+    // console.log(data)
     
     for (let x = 0; x < data.length; x++) {
         if (tempArr[x] == data[x][0].date) {
@@ -35,7 +35,7 @@ export function dateSorter(data) {
         }
         
     }
-    console.log(sortedArray)
+    // console.log(sortedArray)
 }
 
 

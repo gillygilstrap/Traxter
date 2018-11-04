@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import './add.scss'
+import './edit.scss'
 import DashTop from '../DashTop/DashTop';
 import axios from "axios";
+import { connect } from 'react-redux';
+import {dateShaper} from '../../react_utils'
 
 class Add extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             cardio: true,
             weights: false,
-            today: true,
-            future: false,
+            today: false,
+            future: true,
             run: true,
             swim: false,
             cycle: false,
@@ -26,9 +28,11 @@ class Add extends Component {
             setsValue: '',
             notesValue: '',
             workout: [],
-            workoutEmpty: true,
+            workoutEmpty: false,
             useDate: '',
-            completed: false
+            completed: false,
+            editDate: null,
+            editItem: false
 
         }
         this.handleCardioClick = this.handleCardioClick.bind(this);
@@ -55,6 +59,15 @@ class Add extends Component {
 
     }
     componentDidMount() {
+        const {workout} = this.props.workout
+        const {name, date, note} = this.props.workout[0]
+        const useDate = dateShaper(date)
+        this.setState({
+            workout: this.props.workout,
+            workoutName: name,
+            editDate: useDate,
+            notesValue: note
+        })
         
         if (this.state.today) {
             this.grabDate();
@@ -265,6 +278,7 @@ class Add extends Component {
 
 
   render() {
+      console.log( this.props.workout)
     const bp = "Bench Press"
     const ip = "Incline Press"
     const sp = "Shoulder Press"
@@ -288,7 +302,7 @@ class Add extends Component {
             </div>
 
             <div className="clear-fix"></div>
-            <h2 className="performance-feed">Add a Workout</h2>
+            <h2 className="performance-feed">Edit Workout</h2>
 
             <div className="workout-btns">
                 <button onClick={this.newWorkoutClick} className="new-workout">New Workout</button>
@@ -301,9 +315,10 @@ class Add extends Component {
                 <input onChange={this.handleWorkoutNameChange} value={this.state.workoutName}type="text"/>
             </div>
 
-            <div className="mid-box">
+            {/* <div className="mid-box"> */}
+            <div className={this.state.editItem? "mid-box": "hide-me"}>
                 
-                <div className="mid-box-child child-1">
+                {/* <div className="mid-box-child child-1">
                     <h3 className="date">Date:</h3>
 
                     {
@@ -318,9 +333,10 @@ class Add extends Component {
                             <button id="future-black" onClick={this.handleFutureClick} className="future">Future</button>
                         </div>     
                     }
-                </div>
+                </div> */}
 
                 <div className="mid-box-child child-2">
+                
                     <h3 className="type">Type:</h3>
                     {
                         this.state.cardio?
@@ -338,11 +354,12 @@ class Add extends Component {
                 </div>
             </div>
                     <div className={this.state.today? "hide-me": "future-date-div"}>
-                    <h3>Choose Date:</h3>
-                    <input onChange={(e) => this.handleChange2('futureDate', e.target.value)}type="text" placeholder="00/00/0000" value={this.state.futureDate}/>
+                    <h3>Date:</h3>
+                    <input onChange={(e) => this.handleChange2('editDate', e.target.value)}type="text" placeholder="00/00/0000" value={this.state.editDate}/>
                     </div>
             {this.state.cardio?
-                <div className="activities-toggle-div">
+                // <div className="activities-toggle-div">
+                <div className={this.state.editItem? "activities-toggle-div": "hide-me"}>
                 
                   <div className="cardio-activities">
                         <button onClick={this.handleRunClick} className={this.state.run? "run-black": "run"}>Run</button>
@@ -427,11 +444,12 @@ class Add extends Component {
                 <div className="title-row-div">
                     <div className="title-row">
                         <h4 className="workout-name">{this.state.workoutName}</h4>
-                        <h4 className="workout-date">{this.state.today? 
+                        <h4 className="workout-date">{this.state.editDate}</h4>
+                        {/* <h4 className="workout-date">{this.state.today? 
                     this.state.currentDate
                     :
                     this.state.futureDate    
-                    }</h4>
+                    }</h4> */}
                         
                     </div>
                     <div onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</div>
@@ -466,7 +484,14 @@ class Add extends Component {
   }
 }
 
-export default Add;
+const mapStateToProps = (state) => {
+    const { workout } = state
+    return {
+        workout
+    }
+}
+
+export default connect(mapStateToProps)(Add);
 
 
 

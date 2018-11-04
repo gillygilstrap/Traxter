@@ -2,9 +2,11 @@ import React from 'react'
 import './workoutcard.scss'
 import {dateShaper} from '../../react_utils'
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { editWorkout} from '../../ducks/reducer'
 
  function WorkoutCard(props) {
-     console.log(props)
+    //  console.log(props)
      const {name, note, date, workout_id, user_id } = props.workout[0]
      const useDate = dateShaper(date)
 
@@ -13,6 +15,7 @@ import axios from 'axios';
         axios.delete(`/api/workout/${userId}/${workoutId}`).then(res => {
             console.log('thing happened')
         })
+        props.refresh();
     }
 
 return (
@@ -59,27 +62,30 @@ return (
 
         <div className="dashboard-button-box">
                 
-                <button className="dashboard-edit">Edit</button>
+                <button onClick={() => props.editWorkout(props.workout)}className="dashboard-edit">Edit</button>
                 <button onClick={() => handleDeleteClick(user_id, workout_id)}className="dashboard-delete">Delete</button>
                 
         </div>
     </div>
   )
-//  props.workout.map((item, i) => {
-//     return (
-//         <div>
-//           pro
-//         </div>
-//       )
-// })
+
   
 }
 
 
-export default WorkoutCard;
+
+export default connect(null, {editWorkout})(WorkoutCard);
 
 // const eachId = props.workout.map((item, i) => {
 //     return item.id
 // })
 
 {/* <div onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</div> */}
+
+
+// const mapStateToProps = (state) => {
+//     const { workout } = state;
+//     return {
+//         workout
+//     }
+// }
