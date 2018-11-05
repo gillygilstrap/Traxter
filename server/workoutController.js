@@ -86,34 +86,88 @@ module.exports = {
             console.log('There was an Error in delete_workout', error)
         })
     },
+
     saveChanges: (req, res) => {
         const {workout} = req.body
-        console.log(workout[0].workout_id)
-        for (let i=0; i<workout.length; i++ ) {
-            const {completed, name, date, workout_id} = workout[0]
-            // const altertedDate = utils.dateToNumber(date)
-            req.app.get('db').edit_workout({
-            
+        console.log(req.body)
+        const {completed, date, workout_id} = workout[0]
+        const {name, note} = req.body
+        // const altertedDate = utils.dateToNumber(date)
+        req.app.get('db').edit_workout({
             name: name, 
             date: date,
             completed: completed,
-            note: req.body.note,
+            note: note,
             workout_id: workout_id
         }).then(res => {
-            console.log('this got hit')
-        })
-
-            if (workout[i].id) {
-                
-            }else {
-                
+            for (let i = 0; i < workout.length; i++) {
+                if(workout[i].id) {
+                    if(workout[i].type === "Cardio") {
+                        req.app.get('db').edit_cardio_workout_item({
+                            type: workout[i].type,
+                            type_value: workout[i].colOne,
+                            distance: workout[i].colTwo,
+                            time: workout[i].colThree,
+                            id: workout[i].id
+                        }).then(res => {
+                            // res.status(200).send("Item Was Edited")
+                        }).catch(error => {
+                            console.log('There was an Error saveChanges edit_cardio_workout_item', error)
+                        })
+                    } else {
+                        req.app.get('db').edit_weights_workout_item({
+                            type: workout[i].type,
+                            type_value: workout[i].colOne,
+                            weight: workout[i].colTwo,
+                            reps: workout[i].colThree,
+                            sets: workout[i].colFour,
+                            id: workout[i].id
+                        }).then(res => {
+                            // res.status(200).send("Item Was Edited")
+                            }).catch(error => {
+                                console.log('There was an Error saveChanges edit_weights_workout_item', error)
+                            })
+                    }
+                } else {
+                    if(workout[i].type === "Cardio") {
+                        req.app.get('db').create_cardio_workout_item({
+                            user_id: 1,
+                            workout_id: workout_id,
+                            type: workout[i].type,
+                            type_value: workout[i].colOne,
+                            distance: workout[i].colTwo,
+                            time: workout[i].colThree
+                        }).then(res => {
+                            // res.status(200).send('Item Was Created')
+                        }).catch(error => {
+                            console.log('There was an Error saveChanges create_cardio_workout_item', error)
+                        })
+                    } else {
+                        req.app.get('db').create_weights_workout_item({
+                            user_id: 1,
+                            workout_id: workout_id,
+                            type: workout[i].type,
+                            type_value: workout[i].colOne,
+                            weight: workout[i].colTwo,
+                            reps: workout[i].colThree,
+                            sets: workout[i].colFour
+                        }).then(res => {
+                            // res.status(200).send('Item Was Created')
+                        }).catch(error => {
+                            console.log('There was an Error saveChanges create_weights_workout_item', error)
+                        })
+                    }
+                }
             }
-        }
+        })
     }
- }
 
-
-
+      
+}   
+        
+  
+    
+    
 
 //  /     postCouch: (req,res) => {
         
@@ -143,3 +197,82 @@ module.exports = {
 //     },
      
 // /
+
+
+
+// ---------------------------------------
+    // --------------------------------------------
+    // saveChanges: (req, res) => {
+        // const {workout} = req.body
+        // console.log(req.body)
+        // const {completed, date, workout_id} = workout[0]
+        // const {name, note} = req.body
+        // // const altertedDate = utils.dateToNumber(date)
+        // req.app.get('db').edit_workout({
+        
+        // name: name, 
+        // date: date,
+        // completed: completed,
+        // note: note,
+        // workout_id: workout_id
+        // }).then(res => {
+            // for (let i = 0; i < workout.length; i++) {
+            //    if(workout[i].id) {
+            //        if(workout[i].type === "Cardio") {
+            //             req.app.get('db').edit_cardio_workout_item({
+            //                 type: workout[i].type,
+            //                 type_value: workout[i].colOne,
+            //                 distance: workout[i].colTwo,
+            //                 time: workout[i].colThree,
+            //                 id: workout[i].id,
+            //         }).then(res => {
+            //             res.status(200).send("Item Was Edited")
+            //         }).catch(error => {
+            //             console.log('There was an Error saveChanges edit_cardio_workout_item', error)
+            //         })
+            //        }else {
+            //             req.app.get('db').edit_weights_workout_item({
+            //                 type: workout[i].type,
+            //                 type_value: workout[i].colOne,
+            //                 weight: workout[i].colTwo,
+            //                 reps: workout[i].colThree,
+            //                 sets: workout[i].colFour,
+            //                 id: workout[i].id
+            //        }).then(res => {
+            //         res.status(200).send("Item Was Edited")
+            //         }).catch(error => {
+            //             console.log('There was an Error saveChanges edit_weights_workout_item', error)
+            //         })
+            //    }
+                
+            // }else {
+                // if(workout[i].type === "Cardio") {
+                //     req.app.get('db').create_cardio_workout_item({
+                //         user_id: 1,
+                //         workout_id: workout[i].workout_id,
+                //         type: workout[i].type,
+                //         type_value: workout[i].colOne,
+                //         distance: workout[i].colTwo,
+                //         time: workout[i].colThree
+                //     }).then(res => {
+                //         res.status(200).send('Item Was Created')
+                //     }).catch(error => {
+                //         console.log('There was an Error saveChanges create_cardio_workout_item', error)
+                //     })
+                // } else {
+    //                 req.app.get('db').create_weights_workout_item({
+    //                     user_id: 1,
+    //                     workout_id: workout[i].workout_id,
+    //                     type: workout[i].type,
+    //                     type_value: workout[i].colOne,
+    //                     weight: workout[i].colTwo,
+    //                     reps: workout[i].colThree,
+    //                     sets: workout[i].colFour
+    //                 }).then(res => {
+    //                     res.status(200).send('Item Was Created')
+    //                 }).catch(error => {
+    //                     console.log('There was an Error saveChanges create_weights_workout_item', error)
+    //                 })
+    //             }
+    //         }
+    // }

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './reset.css';
 import './scss/App.scss';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+// import Login from './components/Login/Login';
+// import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddEdit from './components/AddEdit/AddEdit';
-import Profile from './components/Profile/Profile';
+// import Profile from './components/Profile/Profile';
 
 
 class App extends Component {

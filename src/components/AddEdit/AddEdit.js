@@ -12,7 +12,7 @@ class AddEdit extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props != prevProps) {
+        if (this.props !== prevProps) {
             this.setState({
                 editButtonClicked: true
             })
@@ -22,7 +22,7 @@ class AddEdit extends Component {
     //   console.log(this.props)
     //   console.log(this.state.editButtonClicked)
 
-        {if (this.state.editButtonClicked) {
+        if (this.state.editButtonClicked) {
             return(
                 
                 <Edit />
@@ -31,7 +31,7 @@ class AddEdit extends Component {
             return (
                 <Add/>
             )
-        }}
+        }
   }
 }
 

@@ -33,7 +33,7 @@ class Add extends Component {
             workoutEmpty: false,
             useDate: '',
             completed: false,
-            editDate: null,
+            editDate: '',
             editItem: false,
             editItemId: null,
             workoutId: null
@@ -263,9 +263,9 @@ class Add extends Component {
     }
 
     saveChanges() {
-        const {workout, useDate, workoutName, notesValue, completed} = this.state;
+        const {workout,notesValue, workoutName} = this.state;
         // axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( () => {
-        axios.put('/api/workouts', {workout: workout, note: notesValue }).then( () => {
+        axios.put('/api/workouts', {workout: workout, note: notesValue, name: workoutName }).then( () => {
             console.log('got response')
         }
  
@@ -326,7 +326,7 @@ class Add extends Component {
 
     updateWorkoutItem() {
         const workoutCopy = this.state.workout.slice()
-        const { editItemId, workout, cardioType, distanceValue, timeValue, weightsType, weightValue, repsValue, setsValue } =  this.state
+        const { editItemId, cardioType, distanceValue, timeValue, weightsType, weightValue, repsValue, setsValue } =  this.state
         for (let i = 0; i< workoutCopy.length; i++) {
                 if (workoutCopy[i].id === editItemId) {
                     if (workoutCopy[i].type === "Cardio") {
@@ -577,9 +577,9 @@ class Add extends Component {
                     {/* <button onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</button> */}
                 </div>
                 
-               { this.state.workout.map(elem => {
+               { this.state.workout.map(( elem, i ) => {
                    const {colOne, colTwo, colThree, colFour, id, type} = elem
-                   return <div onClick={() => this.handleEditButtonClicked(colOne, colTwo, colThree, colFour, id, type)} className= "workout-content-item" id={this.state.editItem? "highlight-me": ""}>
+                   return <div key={i} onClick={() => this.handleEditButtonClicked(colOne, colTwo, colThree, colFour, id, type)} className= "workout-content-item" id={this.state.editItem? "highlight-me": ""}>
                     <div className="item-name">&diams; {elem.colOne}</div>
                     <div className="item-x item-1">{elem.colTwo}</div>
                     <div className="item-x item-2">{elem.colThree}</div>

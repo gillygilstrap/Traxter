@@ -12,9 +12,7 @@ export function dateShaper(num) {
     newTempArr.splice(3,0,'/')
     return newTempArr.join('')
 }
-function sorter(a,b) {
-    return a- b
-}
+
 export function dateSorter(data) {
     let tempArr = [];
     let sortedArray = [];
@@ -28,7 +26,7 @@ export function dateSorter(data) {
     // console.log(data)
     
     for (let x = 0; x < data.length; x++) {
-        if (tempArr[x] == data[x][0].date) {
+        if (tempArr[x] === data[x][0].date) {
             sortedArray.push(data[x])
             data.slice(x,1)
 
@@ -39,7 +37,7 @@ export function dateSorter(data) {
 }
 
 export function workoutArrayFormatter(arr) {
-    console.log(arr)
+    // console.log(arr)
     let tempArr = []
     for(let i = 0; i< arr.length; i++) {
         if (arr[i].type === "Cardio") {

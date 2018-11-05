@@ -31,7 +31,7 @@ return (
         {props.workout.map((item, i) => {
             if(item.type === "Cardio") {
                 return (
-                <div className="workout-content-item">
+                <div key={i} className="workout-content-item">
                     <div className="item-name">&diams; {item.type_value}</div>
                     <div className="item-x item-1">{item.distance}</div>
                     <div className="item-x item-2">{item.time}</div>
@@ -41,7 +41,7 @@ return (
                 )
             }else {
                 return(
-                    <div className="workout-content-item">
+                    <div key={i} className="workout-content-item">
                     <div className="item-name">&diams; {item.type_value}</div>
                     <div className="item-x item-1">{item.weight}</div>
                     <div className="item-x item-2">{item.reps}</div>
@@ -79,7 +79,7 @@ export default connect(null, {editWorkout})(WorkoutCard);
 //     return item.id
 // })
 
-{/* <div onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</div> */}
+
 
 
 // const mapStateToProps = (state) => {

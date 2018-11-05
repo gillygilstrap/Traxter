@@ -10,7 +10,7 @@ function reducer(state = initialState, action) {
     switch(action.type) {
 
         case EDIT_WORKOUT:
-        console.log('EDIT_WORKOUT got hit', action.payload)
+        // console.log('EDIT_WORKOUT got hit', action.payload)
         return Object.assign( {}, state, {workout: action.payload, editClicked: true});
 
         default:
