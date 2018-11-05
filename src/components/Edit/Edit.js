@@ -35,7 +35,8 @@ class Add extends Component {
             completed: false,
             editDate: null,
             editItem: false,
-            editItemId: null
+            editItemId: null,
+            workoutId: null
 
         }
         this.handleCardioClick = this.handleCardioClick.bind(this);
@@ -57,23 +58,27 @@ class Add extends Component {
         this.clearWorkout = this.clearWorkout.bind(this);
         this.newWorkoutClick = this.newWorkoutClick.bind(this);
         this.handleFutureDateChange = this.handleFutureDateChange.bind(this);
-        this.sendToFeed = this.sendToFeed.bind(this);
+        this.saveChanges = this.saveChanges.bind(this);
         this.updateCompletedClick = this.updateCompletedClick.bind(this);
         this.handleEditButtonClicked = this.handleEditButtonClicked.bind(this);
         this.updateWorkoutItem = this.updateWorkoutItem.bind(this);
         this.handleAddItemClick = this.handleAddItemClick.bind(this);
+        this.deleteWorkoutItem = this.deleteWorkoutItem.bind(this);
 
     }
     componentDidMount() {
-        const {workout} = this.props.workout
-        const {name, date, note} = this.props.workout[0]
+        // const {workout} = this.props.workout
+        const {name, date, note, completed, workout_id} = this.props.workout[0]
+        // console.log(completed)
         const useDate = dateShaper(date)
         const formattedWorkout = workoutArrayFormatter(this.props.workout)
         this.setState({
             workout: formattedWorkout,
             workoutName: name,
             editDate: useDate,
-            notesValue: note
+            notesValue: note,
+            completed: completed,
+            workoutId: workout_id
         })
         
         if (this.state.today) {
@@ -211,7 +216,8 @@ class Add extends Component {
                   colOne: cardioType,
                   colTwo: distanceValue,
                   colThree: timeValue,
-                  colFour: ''  
+                  colFour: '',
+                  type: "Cardio" 
                 }
             ) 
             this.setState({
@@ -224,7 +230,8 @@ class Add extends Component {
                   colOne: weightsType,
                   colTwo: weightValue + 'lbs',
                   colThree: repsValue + ' ' + 'reps',
-                  colFour: setsValue +' ' + 'sets'
+                  colFour: setsValue +' ' + 'sets',
+                  type: "Weights"
                 }
             )
             this.setState({
@@ -255,9 +262,10 @@ class Add extends Component {
         })
     }
 
-    sendToFeed() {
+    saveChanges() {
         const {workout, useDate, workoutName, notesValue, completed} = this.state;
-        axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( () => {
+        // axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( () => {
+        axios.put('/api/workouts', {workout: workout, note: notesValue }).then( () => {
             console.log('got response')
         }
  
@@ -270,7 +278,7 @@ class Add extends Component {
     }
 
     handleEditButtonClicked(colOne, colTwo, colThree, colFour, id, type) {
-        console.log("edit button clicked", colOne, colTwo, colThree, colFour, id , type)
+        // console.log("edit button clicked", colOne, colTwo, colThree, colFour, id , type)
         if (type === "Cardio") {
             if (colOne === "Run") {
                 this.setState({
@@ -337,6 +345,13 @@ class Add extends Component {
             workout: workoutCopy,
             editItem: false
         })
+        this.setState({
+            distanceValue: '',
+            timeValue: '',
+            weightValue: '',
+            repsValue: '',
+            setsValue: ''
+        })
        
     }
 
@@ -344,6 +359,21 @@ class Add extends Component {
         this.setState({
             editItem: true
         })
+    }
+
+    deleteWorkoutItem(){
+        const workoutCopy = this.state.workout.slice()
+        const tempArr = []
+        for(let i=0;i<workoutCopy.length;i++ ) {
+            if (workoutCopy[i].id !== this.state.editItemId) {
+                tempArr.push(workoutCopy[i])
+            }
+        }
+        this.setState({
+            workout: tempArr,
+            editItem: false
+        })
+        console.log(tempArr)
     }
     
 
@@ -362,7 +392,7 @@ class Add extends Component {
 
 
   render() {
-      console.log( this.state.workout)
+    //   console.log( this.state.workoutId)
     const bp = "Bench Press"
     const ip = "Incline Press"
     const sp = "Shoulder Press"
@@ -526,6 +556,8 @@ class Add extends Component {
 
                 <button onClick={this.updateWorkoutItem} className={this.state.editItem?"add-workout-item": "hide-me"}>Update Changes</button>
                 <button onClick={this.updateCompletedClick} id="completed-button" className="add-workout-item">Mark Completed</button>
+                <button onClick={this.deleteWorkoutItem} id="completed-button"  className={this.state.editItem?"add-workout-item": "hide-me"}>Delete Item</button>
+            
             </div>
 
             {/* <div className="workout-content-container"> */}
@@ -551,8 +583,11 @@ class Add extends Component {
                     <div className="item-name">&diams; {elem.colOne}</div>
                     <div className="item-x item-1">{elem.colTwo}</div>
                     <div className="item-x item-2">{elem.colThree}</div>
-                    <div className="item-x itme-3">{elem.colFour}</div>
-                    <div  className="item-x item-5"><i class="fas fa-pencil-alt"></i></div>
+                    <div className="item-x item-3">{elem.colFour}</div>
+                    <div  className="item-x item-5">
+                        <i className="fas fa-pencil-alt">
+                        </i>
+                    </div>
 
                     </div>
                 })}
@@ -564,7 +599,7 @@ class Add extends Component {
                 </div>
             </div>
             <div className={this.state.workoutEmpty? "hide-me": "workout-button-box"}>
-                    <button onClick={this.sendToFeed}className="send-to-feed">Save Changes</button>
+                    <button onClick={this.saveChanges}className="send-to-feed">Save Changes</button>
                     <button className="save-as-template">Save As Template</button>
                     <button onClick={this.clearWorkout} className="clear">Clear</button>
                 </div>
@@ -584,6 +619,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Add);
+
 
 
 

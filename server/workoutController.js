@@ -85,8 +85,35 @@ module.exports = {
         }).catch(error => {
             console.log('There was an Error in delete_workout', error)
         })
+    },
+    saveChanges: (req, res) => {
+        const {workout} = req.body
+        console.log(workout[0].workout_id)
+        for (let i=0; i<workout.length; i++ ) {
+            const {completed, name, date, workout_id} = workout[0]
+            // const altertedDate = utils.dateToNumber(date)
+            req.app.get('db').edit_workout({
+            
+            name: name, 
+            date: date,
+            completed: completed,
+            note: req.body.note,
+            workout_id: workout_id
+        }).then(res => {
+            console.log('this got hit')
+        })
+
+            if (workout[i].id) {
+                
+            }else {
+                
+            }
+        }
     }
  }
+
+
+
 
 //  /     postCouch: (req,res) => {
         

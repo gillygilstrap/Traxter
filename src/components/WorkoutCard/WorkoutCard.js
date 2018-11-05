@@ -3,7 +3,7 @@ import './workoutcard.scss'
 import {dateShaper} from '../../react_utils'
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { editWorkout} from '../../ducks/reducer'
+import { editWorkout } from '../../ducks/reducer'
 
  function WorkoutCard(props) {
     //  console.log(props)
@@ -13,7 +13,6 @@ import { editWorkout} from '../../ducks/reducer'
 // console.log(props.workout[0])
    function handleDeleteClick(userId, workoutId) {
         axios.delete(`/api/workout/${userId}/${workoutId}`).then(res => {
-            console.log('thing happened')
         })
         props.refresh();
     }

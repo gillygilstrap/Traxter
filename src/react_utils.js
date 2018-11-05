@@ -49,7 +49,12 @@ export function workoutArrayFormatter(arr) {
                 colThree: arr[i].time,
                 colFour: '',
                 id: arr[i].id,
-                type: arr[i].type
+                type: arr[i].type,
+                completed: arr[i].completed,
+                workout_id: arr[i].workout_id,
+                date: arr[i].date,
+                name: arr[i].name,
+                note: arr[i].note
             })
         }else {
             tempArr.push({
@@ -58,7 +63,12 @@ export function workoutArrayFormatter(arr) {
                 colThree: arr[i].reps,
                 colFour: arr[i].sets,
                 id: arr[i].id,
-                type: arr[i].type
+                type: arr[i].type,
+                completed: arr[i].completed,
+                workout_id: arr[i].workout_id,
+                date: arr[i].date,
+                name: arr[i].name,
+                note: arr[i].note
             })
         }
     }

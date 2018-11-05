@@ -18,7 +18,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     axios.get('/api/workouts/getAll/1').then(res => {
-      // console.log('----------BANG!!!!----------', );
+      // console.log(res.data);
       dateSorter(res.data)
       // console.log(res.data)
       this.setState({
@@ -32,6 +32,7 @@ class Dashboard extends Component {
   }
   render() {
     const {workout} =  this.state
+    // console.log(workout)
     // console.log(this.state.products)
      const mappedWorkout =  workout.map((workout,i) => {
        return <WorkoutCard refresh={this.refresh} key={i} workout={workout}/>

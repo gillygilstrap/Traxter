@@ -18,6 +18,7 @@ massive(process.env.CONNECTION_STRING).then(database => {
 })
 
 app.post('/api/workouts', workoutController.newWorkout)
+app.put('/api/workouts', workoutController.saveChanges)
 app.get('/api/workouts/getAll/:id', workoutController.getAllWorkouts)
 app.delete('/api/workout/:userId/:workoutId', workoutController.deleteWorkout)
 const port = 4000
