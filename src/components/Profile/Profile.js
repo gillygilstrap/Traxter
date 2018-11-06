@@ -9,10 +9,10 @@ import './profile.scss'
 
       <div className="profile-main">
         <div className="dash-fixed-header">
-              <DashTop />
+              <DashTop addStateChange={this.handleAddStateToFalse}/>
 
           <div className="dashboard-btns-box">
-              <button className="dashboard-add-btn">Add Workout</button>
+              <button onClick={() => this.props.addStateToTrue()}className="dashboard-add-btn">Add Workout</button>
               <button className="dashboard-search-btn">Search Workouts</button>
           </div>
 
@@ -55,7 +55,7 @@ import './profile.scss'
        </div>
 
        <div className="profile-button-div">
-          <button className="profile-button">Save Changes</button>
+          <button onClick={() => this.props.profileStateToFalse()}className="profile-button">Save Changes</button>
        </div>
 
       </div>

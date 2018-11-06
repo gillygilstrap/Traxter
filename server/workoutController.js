@@ -2,7 +2,7 @@ const _ = require('lodash')
 const utils = require('./utils.js')
 
 module.exports = {
-    newWorkout: (req, res) => {
+    newWorkout: (req, response) =>{ 
         const {completed, workoutName, note, workout, date} = req.body
         const altertedDate = utils.dateToNumber(date)
         req.app.get('db').create_workout({
@@ -25,7 +25,10 @@ module.exports = {
                             distance: workout[i].colTwo,
                             time: workout[i].colThree
                         }).then(res => {
-                            // console.log(res[0])
+                            console.log(res)
+                            res.send("Got Something")
+                        }).catch(error => {
+                            console.log('Error in newWorkout create_cardio_workout_item', error)
                         })
                     } else {
                         const type = "Weights"
@@ -38,11 +41,16 @@ module.exports = {
                             reps: workout[i].colThree,
                             sets: workout[i].colFour
                         }).then(res => {
-                            // console.log(res[0])
+                            console.log('weights got it')
+                            res.send('Got Something')
+                        }).catch(error => {
+                            console.log('Error in newWorkout create_weights_workout_item', error)
                         })
                     }
             }
-        })
+        }).then(() => {
+            response.status(200).send('This thing')
+        }) 
     },
 
     getAllWorkouts: (req, res) => {
@@ -87,7 +95,7 @@ module.exports = {
         })
     },
 
-    saveChanges: (req, res) => {
+    saveChanges: (req, response) => {
         const {workout} = req.body
         console.log(req.body)
         const {completed, date, workout_id} = workout[0]
@@ -159,6 +167,8 @@ module.exports = {
                     }
                 }
             }
+        }).then(() => {
+            response.status(200).send('this thing')
         })
     }
 

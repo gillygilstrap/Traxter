@@ -61,7 +61,7 @@ return (
 
         <div className="dashboard-button-box">
                 
-                <button onClick={() => props.editWorkout(props.workout)}className="dashboard-edit">Edit</button>
+                <button onClick={() => props.editWorkout(props.workout)} className="dashboard-edit">Edit</button>
                 <button onClick={() => handleDeleteClick(user_id, workout_id)}className="dashboard-delete">Delete</button>
                 
         </div>

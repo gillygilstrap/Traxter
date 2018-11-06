@@ -4,7 +4,8 @@ const initialState = {
     editClicked: false
 }
 
-const EDIT_WORKOUT = 'EDIT_WORKOUT'
+const EDIT_WORKOUT = 'EDIT_WORKOUT';
+const EDIT_TO_FALSE = 'EDIT_TO_FALSE';
 
 function reducer(state = initialState, action) {
     switch(action.type) {
@@ -13,13 +14,21 @@ function reducer(state = initialState, action) {
         // console.log('EDIT_WORKOUT got hit', action.payload)
         return Object.assign( {}, state, {workout: action.payload, editClicked: true});
 
+        case EDIT_TO_FALSE: 
+        return Object.assign({}, state, {editClicked: false})
+
         default:
         return state;
     }
     
 }
 
-
+export function setEditToFalse() {
+    return {
+        type: EDIT_TO_FALSE,
+        payload: null
+    }
+}
 
 export function editWorkout(workout) {
     return {
@@ -27,6 +36,7 @@ export function editWorkout(workout) {
         payload: workout
     }
 }
+
 
 
 export default reducer;

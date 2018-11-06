@@ -237,11 +237,14 @@ class Add extends Component {
 
     sendToFeed() {
         const {workout, useDate, workoutName, notesValue, completed} = this.state;
-        axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( () => {
-            console.log('got response')
+        axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( res => {
+            // console.log(res.data)
+            this.props.addStateChange()
+            // this.props.history('/dashboard')
         }
  
         )
+        this.props.addStateChange()
     }
     updateCompletedClick() {
         this.setState({
@@ -273,15 +276,14 @@ class Add extends Component {
     const pul = "Pull Ups"
     const bor = "Bent Over Row"
     const cr = "Calf Raise"
-
     return (
 
         <div className="add-main">
             <div className="dash-fixed-header">
-            <DashTop />
+            <DashTop profileStateToTrue={this.props.profileStateToTrue}/>
 
             <div className="dashboard-btns-box">
-                <button className="dashboard-add-btn">Add Workout</button>
+                <button onClick={() => this.props.dashboardStateReset()}className="dashboard-add-btn">Back To Dashboard</button>
                 <button className="dashboard-search-btn">Search Workouts</button>
             </div>
 

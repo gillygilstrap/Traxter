@@ -25,11 +25,11 @@ class AddEdit extends Component {
         if (this.state.editButtonClicked) {
             return(
                 
-                <Edit />
+                <Edit profileStateToTrue={this.props.profileStateToTrue}/>
             )
         }else {
             return (
-                <Add/>
+                <Add profileStateToTrue={this.props.profileStateToTrue} addStateChange={this.props.addStateChange}/>
             )
         }
   }

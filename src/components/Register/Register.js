@@ -3,6 +3,7 @@ import './register.scss'
 
  class Register extends Component {
   render() {
+    // console.log(this.props)
     return (
       <div className="register-main">
         <div className="register-container">
@@ -27,7 +28,7 @@ import './register.scss'
         <button className="dark-btn">Dark</button>
         </div>
         
-        <button className="register-button">Register</button>
+        <button onClick={() => this.props.loginFunc()}className="register-button">Register</button>
         </div>
       </div>
     )

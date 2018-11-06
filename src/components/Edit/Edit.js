@@ -4,6 +4,7 @@ import DashTop from '../DashTop/DashTop';
 import axios from "axios";
 import { connect } from 'react-redux';
 import {dateShaper, workoutArrayFormatter} from '../../react_utils';
+import { setEditToFalse } from '../../ducks/reducer'
 // import {workoutArrayFormatter} from '../../react_utils',
 
 
@@ -265,8 +266,10 @@ class Add extends Component {
     saveChanges() {
         const {workout,notesValue, workoutName} = this.state;
         // axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( () => {
-        axios.put('/api/workouts', {workout: workout, note: notesValue, name: workoutName }).then( () => {
-            console.log('got response')
+        axios.put('/api/workouts', {workout: workout, note: notesValue, name: workoutName }).then( (res) => {
+            // console.log(res.data)
+            this.props.handleEditStateToFalse()
+            this.props.setEditToFalse()
         }
  
         )
@@ -373,7 +376,7 @@ class Add extends Component {
             workout: tempArr,
             editItem: false
         })
-        console.log(tempArr)
+
     }
     
 
@@ -403,13 +406,16 @@ class Add extends Component {
     const cr = "Calf Raise"
 
     return (
-
+        
         <div className="add-main">
             <div className="dash-fixed-header">
-            <DashTop />
+            <DashTop setEditToFalse={this.props.setEditToFalse()} profileStateToTrue={this.props.profileStateToTrue}/>
 
             <div className="dashboard-btns-box">
-                <button className="dashboard-add-btn">Add Workout</button>
+                <button onClick={() => {
+                    this.props.dashboardStateReset()
+                    this.props.setEditToFalse()
+                    }} className="dashboard-add-btn">Back To Dashboard</button>
                 <button className="dashboard-search-btn">Search Workouts</button>
             </div>
 
@@ -618,7 +624,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Add);
+export default connect(mapStateToProps, {setEditToFalse})(Add);
 
 
 
