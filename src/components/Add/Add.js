@@ -199,12 +199,16 @@ class Add extends Component {
                 timeValue: ''
             })
         }else {
+            const weightVal = weightValue + 'lbs';
+            const repsVal = repsValue + ' ' + 'reps';
+            const setsVal = setsValue +' ' + 'sets'
+
             tempArr.push(
                 {
                   colOne: weightsType,
-                  colTwo: weightValue + 'lbs',
-                  colThree: repsValue + ' ' + 'reps',
-                  colFour: setsValue +' ' + 'sets'
+                  colTwo: weightVal,
+                  colThree: repsVal,
+                  colFour: setsVal
                 }
             )
             this.setState({
@@ -440,8 +444,8 @@ class Add extends Component {
                     {/* <button onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</button> */}
                 </div>
                 
-               { this.state.workout.map(elem => {
-                   return <div className="workout-content-item">
+               { this.state.workout.map((elem,i) => {
+                   return <div key={i} className="workout-content-item">
                     <div className="item-name">&diams; {elem.colOne}</div>
                     <div className="item-x item-1">{elem.colTwo}</div>
                     <div className="item-x item-2">{elem.colThree}</div>

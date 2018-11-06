@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './reset.css';
 import './scss/App.scss';
-import routes from '../src/routes'
-import {Route} from 'react-router-dom'
+// import routes from '../src/routes'
+// import {Route} from 'react-router-dom'
 import Login from './components/Login/Login';
 // import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';

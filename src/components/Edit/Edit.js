@@ -409,7 +409,7 @@ class Add extends Component {
         
         <div className="add-main">
             <div className="dash-fixed-header">
-            <DashTop setEditToFalse={this.props.setEditToFalse()} profileStateToTrue={this.props.profileStateToTrue}/>
+            <DashTop setEditToFalse={this.props.setEditToFalse} profileStateToTrue={this.props.profileStateToTrue}/>
 
             <div className="dashboard-btns-box">
                 <button onClick={() => {
