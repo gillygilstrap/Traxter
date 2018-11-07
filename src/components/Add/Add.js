@@ -345,7 +345,7 @@ class Add extends Component {
             </div>
                     <div className={this.state.today? "hide-me": "future-date-div"}>
                     <h3>Choose Date:</h3>
-                    <input onChange={(e) => this.handleChange2('futureDate', e.target.value)}type="text" placeholder="00/00/0000" value={this.state.futureDate}/>
+                    <input onChange={(e) => this.handleChange2('futureDate', e.target.value)} type="text" placeholder="00/00/0000" value={this.state.futureDate}/>
                     </div>
             {this.state.cardio?
                 <div className="activities-toggle-div">

@@ -2,8 +2,27 @@ import React, { Component } from 'react'
 import './register.scss'
 
  class Register extends Component {
+   constructor() {
+     super() 
+     this.state ={
+       usernameInput: '',
+       passwordInput: '',
+       emailInput: ''
+     }
+   }
+
+   handleInputChange = (key, value) => {
+    this.setState({
+        [key]: value,
+        useDate: value
+    })
+  }
+
+  handleRegisterClicked
+
+  
   render() {
-    // console.log(this.props)
+    console.log(this.state.usernameInput)
     return (
       <div className="register-main">
         <div className="register-container">
@@ -12,13 +31,13 @@ import './register.scss'
         <h3>New Account</h3>
 
         <p className="input-header">Enter a Username</p>
-        <input type="text" className="register-username-input" placeholder="Username"/>
+        <input onChange={(e) => this.handleInputChange('usernameInput', e.target.value)} type="text" className="register-username-input" placeholder="Username"/>
 
         <p className="input-header">Enter a Password</p>
-        <input type="password" className="register-password-input" placeholder="Password"/>
+        <input onChange={(e) => this.handleInputChange('passwordInput', e.target.value)} type="password" className="register-password-input" placeholder="Password"/>
 
         <p className="input-header">Enter Your Email</p>
-        <input type="email" className="register-password-input" placeholder="Email"/>
+        <input onChange={(e) => this.handleInputChange('emailInput', e.target.value)} type="email" className="register-password-input" placeholder="Email"/>
 
         
 
