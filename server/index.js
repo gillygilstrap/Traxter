@@ -21,6 +21,8 @@ app.post('/api/workouts', workoutController.newWorkout)
 app.put('/api/workouts', workoutController.saveChanges)
 app.get('/api/workouts/getAll/:id', workoutController.getAllWorkouts)
 app.delete('/api/workout/:userId/:workoutId', workoutController.deleteWorkout)
+
+app.post('/api/users', userController.createNewUser)
 const port = 4000
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`)
