@@ -39,5 +39,8 @@
         letter-spacing: 1px;
         text-shadow: 1px 1px 1px $black;
     }
+    h2:hover {
+        cursor: pointer
+    }
 
 }

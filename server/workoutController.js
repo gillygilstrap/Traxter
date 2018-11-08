@@ -26,7 +26,7 @@ module.exports = {
                             distance: workout[i].colTwo,
                             time: workout[i].colThree
                         }).then(res => {
-                            console.log(res)
+                            // console.log(res)
                             res.send("Got Something")
                         }).catch(error => {
                             console.log('Error in newWorkout create_cardio_workout_item', error)
@@ -55,10 +55,10 @@ module.exports = {
     },
 
     getAllWorkouts: (req, res) => {
-        console.log(req.params)
+        // console.log(req.params)
         const {id} = req.params
         req.app.get('db').get_all_workouts({id: id}).then(workouts => {
-            console.log(workouts)
+            // console.log(workouts)
             let reduced = workouts.reduce((r,a) => {
                 r[a.workout_id] = r[a.workout_id] || [];
                 r[a.workout_id].push(a);
@@ -81,7 +81,7 @@ module.exports = {
     deleteWorkout: (req, res) => {
         console.log('----------BANG!!!!----------' );
         workout_id = req.params.workoutId
-        console.log(req.params)
+        // console.log(req.params)
         req.app.get('db').delete_workout_items({
             workout_id: workout_id
         }).then(res => {
@@ -99,7 +99,7 @@ module.exports = {
 
     deleteWorkoutItem: (req, res) => {
             const { id } = req.params;
-            console.log(id)
+            // console.log(id)
             req.app.get('db').delete_workout_single_item({
                 id: id
             }).then(() => {
@@ -108,9 +108,10 @@ module.exports = {
     },
 
     saveChanges: (req, response) => {
-        const {workout} = req.body
-        console.log(req.body)
-        const {completed, date, workout_id} = workout[0]
+        const {workout, completed} = req.body
+        // console.log(req.body)
+        const {date, workout_id} = workout[0]
+        // console.log('line 114',completed)
         const {name, note} = req.body
         // const altertedDate = utils.dateToNumber(date)
         req.app.get('db').edit_workout({

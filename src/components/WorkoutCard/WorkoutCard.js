@@ -19,7 +19,6 @@ import { editWorkout } from '../../ducks/reducer'
     // console.log(completed)
 return (
 
-    // <div>This is Fucked</div>
     <div id='dashboard-workout-box' className="workout-content-container white">
         <div className="title-row-div">
             <div className="title-row">
@@ -27,7 +26,8 @@ return (
                 <h4 className="workout-date">{useDate}</h4>
                 
             </div>
-            <div>Completed</div>
+            {completed? <div className="completed">Completed</div>: <div></div>}
+            {/* <div className={completed? "completed": "out-of-site"}>Completed</div> */}
         </div>
         <div className="workout-items-box">
         {props.workout.map((item, i) => {

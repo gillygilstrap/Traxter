@@ -42,14 +42,10 @@ import { currentUserToState } from '../../ducks/reducer';
  
   calcLeanBodyMass = () => {
     const weight = this.state.currentWeight;
-    // console.log('weight', weight)
     const fatPercentage = 1 - (this.state.currentBodyFat/ 100)
-    // console.log('fatPercentage', fatPercentage)
     const calc = weight * fatPercentage
-    // console.log('calc', calc)
-    const leanBodyMass = calc
-    console.log('leanBodyMass', leanBodyMass)
-    // const leanBodyMass = 27
+    const leanBodyMass = calc.toFixed(2);
+
     this.setState({
       leanBodyMass: leanBodyMass
     })
@@ -66,30 +62,26 @@ import { currentUserToState } from '../../ducks/reducer';
   }
   handleWeightChange(key, value) {
     const weight = value;
-    // console.log('weight', weight)
     const fatPercentage = 1 - (this.state.currentBodyFat/ 100)
-    // console.log('fatPercentage', fatPercentage)
     const calc = weight * fatPercentage
-
+    const calcFixed = calc.toFixed(2)
       this.setState({
           [key]: value,
           useDate: value,
-          leanBodyMass: calc
+          leanBodyMass: calcFixed
       })
       
     
   }
   handleFatChange(key, value) {
     const weight = this.state.currentWeight;
-    // console.log('weight', weight)
     const fatPercentage = 1 - (value/ 100)
-    // console.log('fatPercentage', fatPercentage)
     const calc = weight * fatPercentage
-
+    const calcFixed = calc.toFixed(2)
       this.setState({
           [key]: value,
           useDate: value,
-          leanBodyMass: calc
+          leanBodyMass: calcFixed
       })
    
     
@@ -104,6 +96,10 @@ import { currentUserToState } from '../../ducks/reducer';
     })
   }
 
+  
+
+
+
   render() {
     const { username, email } = this.props.currentUser
     const leanBodyMass = this.state.leanBodyMass
@@ -114,7 +110,7 @@ import { currentUserToState } from '../../ducks/reducer';
               <DashTop profileStateToTrue={this.props.profileStateToTrue} addStateChange={this.handleAddStateToFalse}/>
 
           <div className="dashboard-btns-box">
-              <button onClick={() => this.props.addStateToTrue()}className="dashboard-add-btn">Add Workout</button>
+              <button onClick={() => this.props.dashboardStateReset()} className="dashboard-add-btn">Back To Dashboard</button>
               <button className="dashboard-search-btn">Search Workouts</button>
           </div>
 

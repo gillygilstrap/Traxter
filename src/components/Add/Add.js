@@ -300,7 +300,7 @@ class Add extends Component {
             <DashTop profileStateToTrue={this.props.profileStateToTrue}/>
 
             <div className="dashboard-btns-box">
-                <button onClick={() => this.props.dashboardStateReset()}className="dashboard-add-btn">Back To Dashboard</button>
+                <button onClick={() => this.props.dashboardStateReset()} className="dashboard-add-btn">Back To Dashboard</button>
                 <button className="dashboard-search-btn">Search Workouts</button>
             </div>
 

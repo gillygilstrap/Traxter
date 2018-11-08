@@ -116,15 +116,16 @@ class Dashboard extends Component {
       return <Edit profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} handleEditStateToFalse={this.handleEditStateToFalse}/>
       // <AddEdit editStateToTrue={this.handleEditClicked} profileStateToTrue={this.handleProfileClicked}/>
     } else if(this.state.profileClicked){
-      return <Profile profileStateToTrue={this.handleProfileClicked} profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked}/>
+      return <Profile profileStateToTrue={this.handleProfileClicked} profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked} dashboardStateReset={this.dashboardStateReset}/>
     } else {
         const {workout} =  this.state
       // console.log(workout)
       // console.log(this.state.products)
       const mappedWorkout =  workout.map((workout,i) => {
+        // console.log(workout[0].completed)
         return <WorkoutCard editStateToTrue={this.handleEditClicked} refresh={this.refresh} key={i} workout={workout}/>
       })
-      // console.log(mappedWorkout)
+      // console.log(/mappedWorkout)
       return (
         <div className="dashboard-main">
           <div className="dash-fixed-header">

@@ -264,9 +264,10 @@ class Add extends Component {
     }
 
     saveChanges() {
-        const {workout,notesValue, workoutName} = this.state;
+        const {workout,notesValue, workoutName, completed} = this.state;
+        // console.log(completed)
         // axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( () => {
-        axios.put('/api/workouts', {workout: workout, note: notesValue, name: workoutName }).then( (res) => {
+        axios.put('/api/workouts', {workout: workout, note: notesValue, name: workoutName, completed: completed }).then( (res) => {
             // console.log(res.data)
             this.props.handleEditStateToFalse()
             this.props.setEditToFalse()
@@ -400,9 +401,8 @@ class Add extends Component {
 
 
   render() {
-    console.log('render of delete Func',this.state.workout)
 
-    //   console.log( this.state.workoutId)
+    //   console.log( this.state.completed)
     const bp = "Bench Press"
     const ip = "Incline Press"
     const sp = "Shoulder Press"
