@@ -24,14 +24,15 @@ class Dashboard extends Component {
   }
 
   getAllWorkouts = () => {
+    console.log(this.props.currentUser.id)
     if (this.props.currentUser !== null) {
     const { id } =this.props.currentUser
     axios.get(`/api/workouts/getAll/${id}`).then(res => {
-    console.log(res.data[0]);
-    dateSorter(res.data)
+    console.log(res.data);
+    // dateSorter(res.data)
     // console.log(res.data)
     this.setState({
-      workout: res.data[0]
+      workout: res.data
     })
   })
     }
@@ -46,9 +47,10 @@ class Dashboard extends Component {
     if (this.props !== prevProps && this.props.editClicked) {
       this.handleEditClicked()
     }
-    // if ( this.props !== prevProps) {
-    //   this.getAllWorkouts()
-    // }
+    if ( this.props !== prevProps) {
+      console.log('igot hit')
+      this.getAllWorkouts()
+    }
   }
   handleProfileToFalse = () => {
     this.setState({
@@ -105,7 +107,7 @@ class Dashboard extends Component {
   }
   
   render() {
-    // console.log(this.props.currentUser)
+    console.log(this.props.currentUser)
 
     if (this.state.addClicked) {
       return <Add profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} addStateChange={this.handleAddStateToFalse}/>
@@ -117,12 +119,12 @@ class Dashboard extends Component {
       return <Profile profileStateToTrue={this.handleProfileClicked} profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked}/>
     } else {
         const {workout} =  this.state
-      // console.log(workout)
+      console.log(workout)
       // console.log(this.state.products)
       const mappedWorkout =  workout.map((workout,i) => {
         return <WorkoutCard editStateToTrue={this.handleEditClicked} refresh={this.refresh} key={i} workout={workout}/>
       })
-
+      console.log(mappedWorkout)
       return (
         <div className="dashboard-main">
           <div className="dash-fixed-header">
@@ -137,11 +139,13 @@ class Dashboard extends Component {
           <div className="clear-fix"></div>
           <h2 className="performance-feed">Performance Feed</h2>
 
+          
+
            {!this.state.workout.length?
           <button className="big-add-button" onClick={this.handleAddClicked}>Add a Workout!</button> 
           :
-          {mappedWorkout}
-          // <div></div>
+          
+          <div>{mappedWorkout}</div>
           }
             
             
@@ -156,6 +160,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
   const { editClicked, addClicked, currentUser } = state
+  // console.log(state)
   return {
     editClicked,
     addClicked,
