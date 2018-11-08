@@ -15,32 +15,84 @@ import { currentUserToState } from '../../ducks/reducer';
        leanBodyMass: ''
      }
    }
+   componentWillMount() {
+    const {weight, fat} = this.props.currentUser
+    this.setState({
+      currentWeight: weight,
+      currentBodyFat: fat
+    })
+    this.calcLeanBodyMass()
+   }
+
    componentDidMount() {
      const {weight, fat} = this.props.currentUser
      this.setState({
        currentWeight: weight,
        currentBodyFat: fat
      })
+     this.calcLeanBodyMass()
+
+     
    }
+  //  componentDidUpdate(prevProps) {
+  //    if (this.props !== prevProps  ) {
+  //     this.calcLeanBodyMass()
+  //    }
+  //  }
  
   calcLeanBodyMass = () => {
     const weight = this.state.currentWeight;
+    // console.log('weight', weight)
     const fatPercentage = 1 - (this.state.currentBodyFat/ 100)
+    // console.log('fatPercentage', fatPercentage)
     const calc = weight * fatPercentage
+    // console.log('calc', calc)
     const leanBodyMass = calc
+    console.log('leanBodyMass', leanBodyMass)
     // const leanBodyMass = 27
     this.setState({
       leanBodyMass: leanBodyMass
     })
 
+    
   } 
-  
-  handleChange(key, value) {
+
+  setMyState = () => {
+    this.setState({
+      currentWeight: this.state.currentWeight,
+      currentBodyFat: this.state.currentBodyFat,
+      leanBodyMass: this.state.leanBodyMass
+    })
+  }
+  handleWeightChange(key, value) {
+    const weight = value;
+    // console.log('weight', weight)
+    const fatPercentage = 1 - (this.state.currentBodyFat/ 100)
+    // console.log('fatPercentage', fatPercentage)
+    const calc = weight * fatPercentage
+
       this.setState({
           [key]: value,
-          useDate: value
+          useDate: value,
+          leanBodyMass: calc
       })
-      this.calcLeanBodyMass()
+      
+    
+  }
+  handleFatChange(key, value) {
+    const weight = this.state.currentWeight;
+    // console.log('weight', weight)
+    const fatPercentage = 1 - (value/ 100)
+    // console.log('fatPercentage', fatPercentage)
+    const calc = weight * fatPercentage
+
+      this.setState({
+          [key]: value,
+          useDate: value,
+          leanBodyMass: calc
+      })
+   
+    
   }
 
   updateProfileInfo = () => {
@@ -53,7 +105,6 @@ import { currentUserToState } from '../../ducks/reducer';
   }
 
   render() {
-    // console.log(this.state.leanBodyMass)
     const { username, email } = this.props.currentUser
     const leanBodyMass = this.state.leanBodyMass
     return (
@@ -91,12 +142,12 @@ import { currentUserToState } from '../../ducks/reducer';
 
           <div className="profile-box profile-weight-box">
           <h3>Current Weight:</h3>
-          <input onChange={(e) => this.handleChange('currentWeight', e.target.value)} value={this.state.currentWeight} type="text" className="weight"/>
+          <input onChange={(e) => this.handleWeightChange('currentWeight', e.target.value)} value={this.state.currentWeight} type="text" className="weight"/>
           </div>
 
           <div className="profile-box profile-fat-box">
           <h3>Current Body Fat %:</h3>
-          <input onChange={(e) => this.handleChange('currentBodyFat', e.target.value)} value={this.state.currentBodyFat} type="text" className="fat"/>
+          <input onChange={(e) => this.handleFatChange('currentBodyFat', e.target.value)} value={this.state.currentBodyFat} type="text" className="fat"/>
           </div>
 
           <div className="profile-box profile-weight-box">
