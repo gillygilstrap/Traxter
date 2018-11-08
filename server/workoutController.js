@@ -97,6 +97,16 @@ module.exports = {
         })
     },
 
+    deleteWorkoutItem: (req, res) => {
+            const { id } = req.params;
+            console.log(id)
+            req.app.get('db').delete_workout_single_item({
+                id: id
+            }).then(() => {
+                res.status(200).json({message: "Item Was Deleted"})
+            })
+    },
+
     saveChanges: (req, response) => {
         const {workout} = req.body
         console.log(req.body)

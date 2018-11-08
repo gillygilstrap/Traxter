@@ -18,12 +18,12 @@ class App extends Component {
   
 
   handleRegisterClick = (userObj) => {
-    console.log("handle register click",userObj)
+    // console.log("handle register click",userObj)
     this.props.currentUserToState(userObj[0])
     this.setState({
       loggedIn: true
     })
-    console.log("handle register click",userObj)
+    // console.log("handle register click",userObj)
     
   }
 

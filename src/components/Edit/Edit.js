@@ -365,6 +365,9 @@ class Add extends Component {
     }
 
     deleteWorkoutItem(){
+        console.log('Top of delete Func',this.state.workout)
+        const id = this.state.editItemId
+        // console.log(id)
         const workoutCopy = this.state.workout.slice()
         const tempArr = []
         for(let i=0;i<workoutCopy.length;i++ ) {
@@ -372,10 +375,12 @@ class Add extends Component {
                 tempArr.push(workoutCopy[i])
             }
         }
+        axios.delete(`/api/workoutItem/${id}`)
         this.setState({
             workout: tempArr,
             editItem: false
         })
+        console.log('Bottom of delete Func',this.state.workout)
 
     }
     
@@ -395,6 +400,8 @@ class Add extends Component {
 
 
   render() {
+    console.log('render of delete Func',this.state.workout)
+
     //   console.log( this.state.workoutId)
     const bp = "Bench Press"
     const ip = "Incline Press"
@@ -432,7 +439,7 @@ class Add extends Component {
             
             <div className="workout-name-div">
                 <h3>Workout Name:</h3>
-                <input onChange={this.handleWorkoutNameChange} value={this.state.workoutName}type="text"/>
+                <input onChange={this.handleWorkoutNameChange} value={this.state.workoutName} placeholder="Max 15 Characters" type="text"/>
             </div>
 
             <div className="mid-box">

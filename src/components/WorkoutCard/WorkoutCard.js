@@ -7,7 +7,7 @@ import { editWorkout } from '../../ducks/reducer'
 
  function WorkoutCard(props) {
     //  console.log(props)
-     const {name, note, date, workout_id, user_id } = props.workout[0]
+     const {name, note, date, workout_id, user_id, completed } = props.workout[0]
      const useDate = dateShaper(date)
 
 // console.log(props.workout[0])
@@ -16,7 +16,7 @@ import { editWorkout } from '../../ducks/reducer'
         })
         props.refresh();
     }
-
+    // console.log(completed)
 return (
 
     // <div>This is Fucked</div>

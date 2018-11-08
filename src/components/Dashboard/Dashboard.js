@@ -9,6 +9,7 @@ import Add from '../Add/Add'
 import Profile from '../Profile/Profile'
 import {dateSorter} from '../../react_utils'
 import { connect } from 'react-redux' 
+import { setEditToFalse } from '../../ducks/reducer'
 
 
 class Dashboard extends Component {
@@ -24,11 +25,10 @@ class Dashboard extends Component {
   }
 
   getAllWorkouts = () => {
-    console.log(this.props.currentUser.id)
     if (this.props.currentUser !== null) {
     const { id } =this.props.currentUser
     axios.get(`/api/workouts/getAll/${id}`).then(res => {
-    console.log(res.data);
+    // console.log(res.data);
     // dateSorter(res.data)
     // console.log(res.data)
     this.setState({
@@ -48,7 +48,6 @@ class Dashboard extends Component {
       this.handleEditClicked()
     }
     if ( this.props !== prevProps) {
-      console.log('igot hit')
       this.getAllWorkouts()
     }
   }
@@ -75,6 +74,7 @@ class Dashboard extends Component {
       editClicked: false,
       addClicked: false
     })
+    this.props.setEditToFalse()
   }
 
   handleAddClicked = () => {
@@ -107,7 +107,7 @@ class Dashboard extends Component {
   }
   
   render() {
-    console.log(this.props.currentUser)
+    // console.log(this.props.currentUser)
 
     if (this.state.addClicked) {
       return <Add profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} addStateChange={this.handleAddStateToFalse}/>
@@ -119,12 +119,12 @@ class Dashboard extends Component {
       return <Profile profileStateToTrue={this.handleProfileClicked} profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked}/>
     } else {
         const {workout} =  this.state
-      console.log(workout)
+      // console.log(workout)
       // console.log(this.state.products)
       const mappedWorkout =  workout.map((workout,i) => {
         return <WorkoutCard editStateToTrue={this.handleEditClicked} refresh={this.refresh} key={i} workout={workout}/>
       })
-      console.log(mappedWorkout)
+      // console.log(mappedWorkout)
       return (
         <div className="dashboard-main">
           <div className="dash-fixed-header">
@@ -168,5 +168,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, {setEditToFalse})(Dashboard);
 

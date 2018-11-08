@@ -21,6 +21,7 @@ app.post('/api/workouts/:id', workoutController.newWorkout)
 app.put('/api/workouts', workoutController.saveChanges)
 app.get('/api/workouts/getAll/:id', workoutController.getAllWorkouts)
 app.delete('/api/workout/:userId/:workoutId', workoutController.deleteWorkout)
+app.delete('/api/workoutItem/:id', workoutController.deleteWorkoutItem)
 
 app.post('/api/register', userController.createNewUser)
 app.post('/api/login', userController.loginUser)
