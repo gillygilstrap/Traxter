@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
 import './reset.css';
 import './scss/App.scss';
-// import routes from '../src/routes'
-// import {Route} from 'react-router-dom'
 import Login from './components/Login/Login';
-// import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
-// import AddEdit from './components/AddEdit/AddEdit';
-// import Profile from './components/Profile/Profile';
+import { connect } from 'react-redux';
+import { currentUserToState } from './ducks/reducer';
 
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       loggedIn: false
     }
   }
 
-  handleRegisterClick = () => {
+  
+
+  handleRegisterClick = (userObj) => {
     this.setState({
       loggedIn: true
     })
-    // this.toDashboard()
+    this.props.currentUserToState(userObj[0])
   }
 
   toDashboard = () => {
@@ -52,6 +51,12 @@ class App extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+  const { currentUser } = state;
+  return {
+    currentUser
+  }
+}
 
-export default App;
+export default connect(mapStateToProps, {currentUserToState})(App);
 

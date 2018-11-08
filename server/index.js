@@ -17,12 +17,14 @@ massive(process.env.CONNECTION_STRING).then(database => {
     // Need Catch Here
 })
 
-app.post('/api/workouts', workoutController.newWorkout)
+app.post('/api/workouts/:id', workoutController.newWorkout)
 app.put('/api/workouts', workoutController.saveChanges)
 app.get('/api/workouts/getAll/:id', workoutController.getAllWorkouts)
 app.delete('/api/workout/:userId/:workoutId', workoutController.deleteWorkout)
 
-app.post('/api/users', userController.createNewUser)
+app.post('/api/register', userController.createNewUser)
+app.post('/api/login', userController.loginUser)
+app.put('/api/users/:id', userController.updateUser)
 const port = 4000
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`)

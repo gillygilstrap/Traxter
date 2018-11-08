@@ -6,6 +6,7 @@ const initialState = {
 
 const EDIT_WORKOUT = 'EDIT_WORKOUT';
 const EDIT_TO_FALSE = 'EDIT_TO_FALSE';
+const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 
 function reducer(state = initialState, action) {
     switch(action.type) {
@@ -15,7 +16,10 @@ function reducer(state = initialState, action) {
         return Object.assign( {}, state, {workout: action.payload, editClicked: true});
 
         case EDIT_TO_FALSE: 
-        return Object.assign({}, state, {editClicked: false})
+        return Object.assign({}, state, {editClicked: false});
+
+        case UPDATE_CURRENT_USER:
+        return Object.assign( {}, state, {currentUser: action.payload})
 
         default:
         return state;
@@ -34,6 +38,13 @@ export function editWorkout(workout) {
     return {
         type: EDIT_WORKOUT,
         payload: workout
+    }
+}
+
+export function currentUserToState(user) {
+    return {
+        type: UPDATE_CURRENT_USER,
+        payload: user
     }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './add.scss'
 import DashTop from '../DashTop/DashTop';
 import axios from "axios";
+import { connect } from 'react-redux';
 
 class Add extends Component {
     constructor() {
@@ -59,7 +60,17 @@ class Add extends Component {
         if (this.state.today) {
             this.grabDate();
         }
-        
+        this.setState({
+            currentUser: this.props.currentUser || ''
+        })
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props !== prevProps) {
+            this.setState({
+                currentUser: this.props.currentUser
+            })
+        }
     }
     handleChange2(key, value) {
         this.setState({
@@ -240,8 +251,9 @@ class Add extends Component {
     }
 
     sendToFeed() {
+        const {id} = this.state.currentUser
         const {workout, useDate, workoutName, notesValue, completed} = this.state;
-        axios.post('/api/workouts', {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( res => {
+        axios.post(`/api/workouts/${id}`, {workout: workout, date: useDate, workoutName: workoutName, note: notesValue, completed: completed }).then( res => {
             // console.log(res.data)
             this.props.addStateChange()
             // this.props.history('/dashboard')
@@ -272,6 +284,7 @@ class Add extends Component {
 
 
   render() {
+    //   console.log(this.state.currentUser)
     const bp = "Bench Press"
     const ip = "Incline Press"
     const sp = "Shoulder Press"
@@ -471,8 +484,14 @@ class Add extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+    const {currentUser} = state
+    return {
+        currentUser
+    }
+}
 
-export default Add;
+export default connect(mapStateToProps)(Add);
 
 
 

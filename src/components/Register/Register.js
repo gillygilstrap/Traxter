@@ -24,10 +24,19 @@ import axios from 'axios';
     if (!usernameInput.length || !passwordInput.length || !emailInput.length) {
       alert('All Fields Must Be Entered')
     } else {
-      axios.post('/api/users', {username: usernameInput, password: passwordInput, email: emailInput}).then(res => {
-        console.log(res.data)
-        // console.log
-        // this.props.loginFunc()
+      axios.post('/api/register', {username: usernameInput, password: passwordInput, email: emailInput}).then(res => {
+        if (res.data.message === "Username is unavailable") {
+          alert('"Username is unavailable"')
+          this.setState({
+            usernameInput: '',
+            passwordInput: ''
+          })
+        }
+        else if (res.data.message === "Email Address is Already in Use") {
+              alert("Email Address is Already in Use")
+        } else {
+          this.props.loginFunc(res.data)
+        }
       })
     }
     
@@ -35,6 +44,7 @@ import axios from 'axios';
 
   
   render() {
+    const { usernameInput, passwordInput} = this.state
     return (
       <div className="register-main">
         <div className="register-container">
@@ -43,10 +53,10 @@ import axios from 'axios';
         <h3>New Account</h3>
 
         <p className="input-header">Enter a Username</p>
-        <input onChange={(e) => this.handleInputChange('usernameInput', e.target.value)} type="text" className="register-username-input" placeholder="Username"/>
+        <input onChange={(e) => this.handleInputChange('usernameInput', e.target.value)} value={usernameInput} type="text" className="register-username-input" placeholder="Username"/>
 
         <p className="input-header">Enter a Password</p>
-        <input onChange={(e) => this.handleInputChange('passwordInput', e.target.value)} type="password" className="register-password-input" placeholder="Password"/>
+        <input onChange={(e) => this.handleInputChange('passwordInput', e.target.value)} value={passwordInput} type="password" className="register-password-input" placeholder="Password"/>
 
         <p className="input-header">Enter Your Email</p>
         <input onChange={(e) => this.handleInputChange('emailInput', e.target.value)} type="email" className="register-password-input" placeholder="Email"/>

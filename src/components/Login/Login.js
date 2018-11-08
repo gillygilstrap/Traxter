@@ -2,15 +2,39 @@ import React, { Component } from 'react'
 import './login.scss'
 import {Link, Route } from 'react-router-dom';
 import Register from '../Register/Register'
+import axios from 'axios';
 
 
  class Login extends Component {
    constructor() {
      super() 
      this.state = {
-      registerClicked: false
+      registerClicked: false,
+      loginUserInput: '',
+      loginPasswordInput: ''
      }
    }
+   handleInputChange = (key, value) => {
+    this.setState({
+        [key]: value,
+        useDate: value
+    })
+  }
+
+  handleLoginClick = () => {
+    const username = this.state.loginUserInput;
+    const password = this.state.loginPasswordInput;
+    axios.post('/api/login', {username: username, password: password}).then( res => {
+      if (res.data.message === 'Username Does Not Exist in Database') {
+        alert(res.data.message)
+      }else  if (res.data.message === 'Username and Password do not match'){
+        alert(res.data.message)
+      } else {
+        this.props.loginFunc(res.data)
+      }
+
+    }).catch(err => console.log(err))
+  }
 
    handleRegisterClick = () => {
      this.setState({
@@ -18,7 +42,6 @@ import Register from '../Register/Register'
      })
    }
   render() {
-
     if (!this.state.registerClicked) {
 
       return (
@@ -27,9 +50,9 @@ import Register from '../Register/Register'
           <i className="fas fa-running"></i>
           <h1>Tra<span className="big-x">X</span>ter</h1>
           <h2>Performance Fitness Tracker</h2>
-          <input type="text" className="login-username-input" placeholder="Username"/>
-          <input type="password" className="login-password-input" placeholder="Password"/>
-          <button onClick={() => this.props.loginFunc()} className="login-button">Login</button>
+          <input onChange={(e) => this.handleInputChange('loginUserInput', e.target.value)} type="text" className="login-username-input" placeholder="Username"/>
+          <input onChange={(e) => this.handleInputChange('loginPasswordInput', e.target.value)} type="password" className="login-password-input" placeholder="Password"/>
+          <button onClick={() => this.handleLoginClick()} className="login-button">Login</button>
           <Link to="/login/register"><button id="register-Button" onClick={this.handleRegisterClick} className="register-button">Register</button></Link>
         </div>
       </div>

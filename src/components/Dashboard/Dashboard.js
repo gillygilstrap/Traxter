@@ -24,14 +24,18 @@ class Dashboard extends Component {
   }
 
   getAllWorkouts = () => {
-    axios.get('/api/workouts/getAll/1').then(res => {
-      // console.log(res.data);
-      dateSorter(res.data)
-      // console.log(res.data)
-      this.setState({
-        workout: res.data
-      })
+    if (this.props.currentUser !== null) {
+    const { id } =this.props.currentUser
+    axios.get(`/api/workouts/getAll/${id}`).then(res => {
+    console.log(res.data[0]);
+    dateSorter(res.data)
+    // console.log(res.data)
+    this.setState({
+      workout: res.data[0]
     })
+  })
+    }
+  
   }
 
   componentDidMount() {
@@ -42,6 +46,9 @@ class Dashboard extends Component {
     if (this.props !== prevProps && this.props.editClicked) {
       this.handleEditClicked()
     }
+    // if ( this.props !== prevProps) {
+    //   this.getAllWorkouts()
+    // }
   }
   handleProfileToFalse = () => {
     this.setState({
@@ -98,7 +105,7 @@ class Dashboard extends Component {
   }
   
   render() {
-
+    // console.log(this.props.currentUser)
 
     if (this.state.addClicked) {
       return <Add profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} addStateChange={this.handleAddStateToFalse}/>
@@ -107,7 +114,7 @@ class Dashboard extends Component {
       return <Edit profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} handleEditStateToFalse={this.handleEditStateToFalse}/>
       // <AddEdit editStateToTrue={this.handleEditClicked} profileStateToTrue={this.handleProfileClicked}/>
     } else if(this.state.profileClicked){
-      return <Profile profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked}/>
+      return <Profile profileStateToTrue={this.handleProfileClicked} profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked}/>
     } else {
         const {workout} =  this.state
       // console.log(workout)
@@ -130,7 +137,15 @@ class Dashboard extends Component {
           <div className="clear-fix"></div>
           <h2 className="performance-feed">Performance Feed</h2>
 
+           {!this.state.workout.length?
+          <button className="big-add-button" onClick={this.handleAddClicked}>Add a Workout!</button> 
+          :
           {mappedWorkout}
+          // <div></div>
+          }
+            
+            
+          
         </div>
       )
     }
@@ -140,10 +155,11 @@ class Dashboard extends Component {
 
 
 const mapStateToProps = (state) => {
-  const { editClicked, addClicked } = state
+  const { editClicked, addClicked, currentUser } = state
   return {
     editClicked,
-    addClicked
+    addClicked,
+    currentUser
   }
 }
 

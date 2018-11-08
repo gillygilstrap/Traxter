@@ -3,6 +3,7 @@ const utils = require('./utils.js')
 
 module.exports = {
     newWorkout: (req, response) =>{ 
+        const {id} = req.params
         const {completed, workoutName, note, workout, date} = req.body
         const altertedDate = utils.dateToNumber(date)
         req.app.get('db').create_workout({
@@ -18,7 +19,7 @@ module.exports = {
                     workout[i].colOne === "Cycle") {
                         const type = "Cardio"
                         req.app.get('db').create_cardio_workout_item({
-                            user_id: 1,
+                            user_id: id,
                             workout_id: workouts[0].id,
                             type: type,
                             type_value: workout[i].colOne,
@@ -33,7 +34,7 @@ module.exports = {
                     } else {
                         const type = "Weights"
                         req.app.get('db').create_weights_workout_item({
-                            user_id: 1,
+                            user_id: id,
                             workout_id: workouts[0].id,
                             type: type,
                             type_value: workout[i].colOne,
@@ -54,9 +55,10 @@ module.exports = {
     },
 
     getAllWorkouts: (req, res) => {
+        console.log(req.params)
         const {id} = req.params
         req.app.get('db').get_all_workouts({id: id}).then(workouts => {
-            // console.log(workouts)
+            console.log(workouts)
             let reduced = workouts.reduce((r,a) => {
                 r[a.workout_id] = r[a.workout_id] || [];
                 r[a.workout_id].push(a);
