@@ -14,26 +14,39 @@ export function dateShaper(num) {
 }
 
 export function dateSorter(data) {
-    let tempArr = [];
-    let sortedArray = [];
-    for (let i = 0; i < data.length; i++) {
-         tempArr.push(data[i][0].date)
+//     let tempArr = [];
+//     let sortedArray = [];
+//     for (let i = 0; i < data.length; i++) {
+//         tempArr.push(data[i][0])
 
-    }
-    // console.log(tempArr)
-    tempArr.sort(function(a,b){return b-a})
-    // console.log(tempArr[0])
+//    }
+
+
+
+    // for (let i = 0; i < data.length; i++) {
+    //      tempArr.push(data[i][0].date)
+
+    // }
+    // console.log("data",data)
+    // tempArr.sort(function(a,b){
+    //     return b.date-a.date
+    // })
+    const sortedData = data.sort((a,b) => {
+        return b[0].date-a[0].date
+    })
+    // console.log('sortedData',sortedData)
     // console.log(data)
     
-    for (let x = 0; x < data.length; x++) {
-        if (tempArr[x] === data[x][0].date) {
-            sortedArray.push(data[x])
-            data.slice(x,1)
-
-        }
+    // for (let x = 0; x < data.length; x++) {
+    //     // console.log(data[x][0].date)
+    //     if (tempArr[x] === data[x][0].date) {
+    //         sortedArray.push(data[x])
+    //         data.splice(x,1)
+    //         console.log('sortedArray', sortedArray)
+    //     }
         
-    }
-    // console.log(sortedArray)
+    // }
+    return sortedData;
 }
 
 export function workoutArrayFormatter(arr) {

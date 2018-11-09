@@ -29,10 +29,10 @@ class Dashboard extends Component {
     const { id } =this.props.currentUser
     axios.get(`/api/workouts/getAll/${id}`).then(res => {
     // console.log(res.data);
-    // dateSorter(res.data)
+   let sortedByDate = dateSorter(res.data)
     // console.log(res.data)
     this.setState({
-      workout: res.data
+      workout: sortedByDate
     })
   })
     }
@@ -122,7 +122,7 @@ class Dashboard extends Component {
       // console.log(workout)
       // console.log(this.state.products)
       const mappedWorkout =  workout.map((workout,i) => {
-        // console.log(workout[0].completed)
+        // console.log(workout[0].date)
         return <WorkoutCard editStateToTrue={this.handleEditClicked} refresh={this.refresh} key={i} workout={workout}/>
       })
       // console.log(/mappedWorkout)
