@@ -7,6 +7,7 @@ import WorkoutCard from '../WorkoutCard/WorkoutCard';
 import Edit from '../Edit/Edit'
 import Add from '../Add/Add'
 import Profile from '../Profile/Profile'
+import Search from '../Search/Search'
 import {dateSorter} from '../../react_utils'
 import { connect } from 'react-redux' 
 import { setEditToFalse } from '../../ducks/reducer'
@@ -26,7 +27,7 @@ class Dashboard extends Component {
 
   getAllWorkouts = () => {
     if (this.props.currentUser !== null) {
-    const { id } =this.props.currentUser
+    const { id } = this.props.currentUser
     axios.get(`/api/workouts/getAll/${id}`).then(res => {
     // console.log(res.data);
    let sortedByDate = dateSorter(res.data)
@@ -148,7 +149,7 @@ class Dashboard extends Component {
           
           <div>{mappedWorkout}</div>
           }
-            
+            <Search />
             
           
         </div>
