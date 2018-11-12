@@ -6,7 +6,7 @@ import axios from 'axios';
 import WorkoutCard from '../WorkoutCard/WorkoutCard'
 import './search.scss'
 
-
+// Temp Comment
 
 class Search extends Component {
     constructor() {
