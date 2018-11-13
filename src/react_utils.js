@@ -1,3 +1,5 @@
+import { filter } from "rsvp";
+
 export function dateShaper(num) {
     let tempArr = num.toString().split('')
     tempArr.splice(4,0,'/')
@@ -66,6 +68,36 @@ export function distanceMultiplesRemoved(arr) {
         return filteredArray
 }
 
+export function liftTypeMultiplesRemoved(arr) {
+    let tempArr = []
+    let filteredArray = []
+    for (let i = 0; i < arr.length; i++) {
+        for (let k = 0; k < arr[i].length; k++) {
+            if (arr[i][k].type === "Weights") {
+                tempArr.push(arr[i][k].type_value)
+            }
+        }
+    }
+    for(let i = 0;i < tempArr.length; i++){
+        if(filteredArray.indexOf(tempArr[i]) === -1 && tempArr[i] !== ""){
+            filteredArray.push(tempArr[i])
+        }
+    }
+    return filteredArray
+
+}
+
+export function weightValueMultiplesRemoved(arr) {
+    let filteredArray = [];
+
+    for(let i = 0;i < arr.length; i++){
+        if(filteredArray.indexOf(arr[i]) === -1 && arr[i] !== ""){
+            filteredArray.push(arr[i])
+        }
+    }
+    return filteredArray;
+}
+
 export function nameMultiplesRemoved(arr) {
     let names = arr.map(elem => {
         return elem[0].name
@@ -80,3 +112,4 @@ export function nameMultiplesRemoved(arr) {
         return filteredArray
     
 }
+
