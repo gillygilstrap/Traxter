@@ -20,7 +20,8 @@ class Search extends Component {
             cardioClicked: false,
             weightsClicked: false,
             nameInputValue: "All",
-            cardioType: 'All'
+            cardioType: 'All',
+            distanceValuesArray: []
         }
     }
     componentWillMount() {
@@ -135,14 +136,45 @@ class Search extends Component {
     //     })
     // }
 
-
+    filterDistancesForInput = (arr, cardioType) => {
+        console.log( arr)
+        let filteredForDistance = []
+        if( cardioType === "All") {
+            for (let i = 0; i < arr.length; i++) {
+                for (let k = 0; k < arr[i].length; k++) {
+                    if (arr[i][k].type === "Cardio") {
+                        filteredForDistance.push(arr[i][k].distance)
+                    } 
+                    
+                }
+                
+            }
+         } 
+         
+        //  else {
+        //     for (let i = 0; i < arr.length; i++) {
+        //         for (let k = 0; k < arr[i].length; k++) {
+        //             if (arr[i][k].type === "Cardio" && arr[i][k].type_value === cardioType) {
+        //                 filteredForDistance.push(arr[i][k].distance)
+        //             } 
+                    
+        //         }
+                
+        //     }
+        // }
+        console.log(filteredForDistance)
+        return filteredForDistance
+    }
     handleCardioTypeChange = (value) => {
         const { selectedWorkoutName} = this.state
         let filteredByNameArr =  this.filterAllWorkoutsByName(selectedWorkoutName)
         let filteredByType = this.filterAllWorkoutsByCardioType(filteredByNameArr, value)
         this.updateWorkoutsRenderedToPage(filteredByType)
+        let filteredDistanceValues = this.filterDistancesForInput(filteredByType)
+        // console.log(filteredDistanceValues)
         this.setState({
-            cardioType: value
+            cardioType: value,
+    
         })
     }
 
@@ -155,6 +187,7 @@ class Search extends Component {
         if (trueVal === "cardioClicked") {
           let filteredByNameArr =  this.filterAllWorkoutsByName(selectedWorkoutName)
           let filteredByType = this.filterAllWorkoutsByCardioType(filteredByNameArr, cardioType)
+          this.filterDistancesForInput(filteredByNameArr, "All")
           this.updateWorkoutsRenderedToPage(filteredByType)
         }else {
             // this.filterWeightsTypeLevel()
@@ -185,7 +218,7 @@ class Search extends Component {
     
 
   render() {
-      console.log(this.state.workoutsRenderedToPage)
+      console.log(this.state.distanceValuesArray)
     // console.log(this.state.workoutsRenderedToPage)
       const { allWorkoutsFromDatabase, workoutsRenderedToPage, displayTypes, cardioClicked, weightsClicked } = this.state
       const workout = workoutsRenderedToPage.map((elem, i) => {
