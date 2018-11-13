@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DashTop from '../DashTop/DashTop'
 import { connect } from 'react-redux'
-import {dateSorter} from '../../react_utils'
+import {dateSorter, distanceMultiplesRemoved, nameMultiplesRemoved} from '../../react_utils'
 import axios from 'axios';
 import WorkoutCard from '../WorkoutCard/WorkoutCard'
 import './search.scss'
@@ -137,7 +137,6 @@ class Search extends Component {
     // }
 
     filterDistancesForInput = (arr, cardioType) => {
-        console.log( arr)
         let filteredForDistance = []
         if( cardioType === "All") {
             for (let i = 0; i < arr.length; i++) {
@@ -162,7 +161,6 @@ class Search extends Component {
                 
         //     }
         // }
-        console.log(filteredForDistance)
         return filteredForDistance
     }
     handleCardioTypeChange = (value) => {
@@ -187,8 +185,11 @@ class Search extends Component {
         if (trueVal === "cardioClicked") {
           let filteredByNameArr =  this.filterAllWorkoutsByName(selectedWorkoutName)
           let filteredByType = this.filterAllWorkoutsByCardioType(filteredByNameArr, cardioType)
-          this.filterDistancesForInput(filteredByNameArr, "All")
+          let filteredDistanceValues = this.filterDistancesForInput(filteredByNameArr, "All")
           this.updateWorkoutsRenderedToPage(filteredByType)
+          this.setState({
+              distanceValuesArray: filteredDistanceValues
+          })
         }else {
             // this.filterWeightsTypeLevel()
         }
@@ -218,12 +219,17 @@ class Search extends Component {
     
 
   render() {
-      console.log(this.state.distanceValuesArray)
-    // console.log(this.state.workoutsRenderedToPage)
+
       const { allWorkoutsFromDatabase, workoutsRenderedToPage, displayTypes, cardioClicked, weightsClicked } = this.state
       const workout = workoutsRenderedToPage.map((elem, i) => {
           return <WorkoutCard key={i} workout={elem}/>
       })
+      const names = nameMultiplesRemoved(allWorkoutsFromDatabase)
+      const distances = distanceMultiplesRemoved(this.state.distanceValuesArray)
+      let distanceValForInput = distances.map((elem, i) => {
+          return <option key={i} value={`${elem}`}>{elem}</option>
+      })
+
     return (
       <div className="dashboard-main">
         <div className="dash-fixed-header">
@@ -242,9 +248,9 @@ class Search extends Component {
             <h3>Workout Name:</h3>
                 <select onChange={(e) => this.handleWorkoutNameChange(e.target.value)} name="name" >
                         <option value="All">All</option>
-                        {allWorkoutsFromDatabase?
-                            allWorkoutsFromDatabase.map((elem, i) => {
-                                return <option key={i} value={elem[0].name}>{elem[0].name}</option> 
+                        {names?
+                            names.map((elem, i) => {
+                                return <option key={i} value={elem}>{elem}</option> 
                             })
                             :
                             null
@@ -314,6 +320,7 @@ class Search extends Component {
                           <h3 className="type">Distance:</h3>
                           <select name="" id="">
                             <option>All</option>
+                            {distanceValForInput}
                           </select>
                           </div>     
                       </div>
