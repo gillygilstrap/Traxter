@@ -14,7 +14,6 @@ class Search extends Component {
         this.state ={
             allWorkoutsFromDatabase: [],
             workoutsRenderedToPage: [],
-            // arrayFilteredByName: [],
             selectedWorkoutName: "All",
             displayTypes: true,
             cardioClicked: false,
@@ -27,97 +26,42 @@ class Search extends Component {
             weightValuesArray: []
         }
     }
+
+
+    // Get All Workouts From The Database
     componentWillMount() {
         this.getAllWorkouts()
     }
+
     
-    filterCardioTypeLevel = () => {
-        this.handleWorkoutNameChange();
-        const type = this.state.cardioType
-        const arrayFilteredByName = this.state.arrayFilteredByName
-        console.log('rray by name',arrayFilteredByName)
-        const filteredByCardioTypeValue = arrayFilteredByName.filter((elem,i) => {
-            let isSelected = false
-            for (let i = 0; i < elem.length; i++) {
-                if(elem[i].type_value === type) {
-                    isSelected = true
-                }
-                
-            }
-            return isSelected;
-        })
-
-        this.setState({
-            workoutsRenderedToPage: filteredByCardioTypeValue,
-           
-        })
-    }
-    // filterCardioTypeLevel = () => {
-      
-        
-    // }
-
-    // -------------------------------------------------------------------------------------------------------------------
-
+    // Filter Workouts by Selected Cardio Type "Run, Swim, Cycle"
     filterAllWorkoutsByCardioType = (arrayFilteredByName, cardioType) => {
-        console.log(arrayFilteredByName)
         if (cardioType === "All") {
             return arrayFilteredByName
         }else {
             const filteredByCardioType = arrayFilteredByName.filter((workout, i) => {
-
                 for (let i = 0; i < workout.length; i++) {
                     if(workout[i].type_value === cardioType) {
                         return true
                     }
-                    
                 }
                 return false
              })
              return filteredByCardioType;
         }
-
-        
-        // console.log(arrayFilteredByName)
-        // const type = this.state.cardioType
-        // const workoutsRenderedToPage = this.state.workoutsRenderedToPage
-        // let tempArr = [];
-        // let testArray = []
-        // console.log(workoutsRenderedToPage)
-        // for (let i = 0; i < workoutsRenderedToPage.length; i++) {
-        //     for (let k = 0; k < workoutsRenderedToPage[i].length; k++) {
-        //         // console.log(workoutsRenderedToPage[i][k].type_value)
-        //         if (workoutsRenderedToPage[i][k].type_value === type) {
-        //             tempArr.push(workoutsRenderedToPage[i][k].workout_id)
-        //         }
-        //     }
-        // } 
-        // for (let i = 0; i < tempArr.length; i++) {
-        //     workoutsRenderedToPage.forEach(elem => {
-        //         if(elem[0].workout_id === tempArr[i]) {
-        //             testArray.push(elem)
-        //         }
-        //     })
-           
-        // }
-        // // console.log(returnArray)
-        // console.log(testArray)
-        // this.setState({
-        //     workoutsRenderedToPage: testArray
-        // })
     }
 
+
+    // Filter Workouts by the Selected Lift Type "Type is Dynamic"
     filterAllWorkoutsByLiftType = (arrayFilteredByName, liftType) => {
         if (liftType === "All") {
             return arrayFilteredByName
         }else {
             const filteredByLiftType = arrayFilteredByName.filter((workout, i) => {
-
                 for (let i = 0; i < workout.length; i++) {
                     if(workout[i].type_value === liftType) {
                         return true
                     }
-                    
                 }
                 return false
              })
@@ -125,14 +69,13 @@ class Search extends Component {
         }
     }
 
+
+    // Filter All Workouts by the Selected Name "Names are Dynamic"
     filterAllWorkoutsByName = (workoutName) => {
         let filteredByName = []
         if(workoutName === "All") { 
-
             filteredByName = this.state.allWorkoutsFromDatabase.slice()
-
         } else {
-        
             const { allWorkoutsFromDatabase } = this.state
             filteredByName = allWorkoutsFromDatabase.filter((elem, i) => {
                 return elem[0].name === workoutName
@@ -141,8 +84,9 @@ class Search extends Component {
         return filteredByName;
     }
 
+    
+    //Change Handler for the Name Input
     handleWorkoutNameChange = (value) => {
-
         const filteredByName = this.filterAllWorkoutsByName(value)
         this.updateWorkoutsRenderedToPage(filteredByName)
         this.setState({
@@ -156,26 +100,17 @@ class Search extends Component {
         })
     }
 
-    // filterForDistanceValues(arr,cardioType) {
-    //     let unReducedArr = [];
-    //     let distanceValues = arr.filter((workout, i) {
-    //         for (let i = 0; i < workout.length; i++) {
-    //             if (workout[i].type === "Cardio")
-    //             unreduced
-    //         }
-    //     })
-    // }
+
+    //Filter all Cardio Workouts by the Selected Distance Value "Values are Dynamic"
     filterAllWorkoutsByDistanceType = (arrayFilteredByCardioType, distanceValue) => {
         if (distanceValue === "All") {
             return arrayFilteredByCardioType
-        }else {
+        } else {
             const filteredByDistanceType = arrayFilteredByCardioType.filter((workout, i) => {
-
                 for (let i = 0; i < workout.length; i++) {
                     if(workout[i].distance === distanceValue) {
                         return true
                     }
-                    
                 }
                 return false
              })
@@ -183,17 +118,17 @@ class Search extends Component {
         }
     }
 
+
+    // Filter all Weights Workouts by the Selected Weight Value "Weight Values are Dynamic"
     filterAllWorkoutsByWeightValue = (arrayFilteredByLiftType, weightValue) => {
         if (weightValue === "All") {
             return arrayFilteredByLiftType
-        }else {
+        } else {
             const filteredByWeightType = arrayFilteredByLiftType.filter((workout, i) => {
-
                 for (let i = 0; i < workout.length; i++) {
                     if(workout[i].weight === weightValue) {
                         return true
                     }
-                    
                 }
                 return false
              })
@@ -201,6 +136,8 @@ class Search extends Component {
         }
     }
 
+
+    // Change Handler for the Distance Input
     handleDistanceInputChange = (e) => {
         const {nameInputValue, cardioType } = this.state
         let filteredByNameArr =  this.filterAllWorkoutsByName(nameInputValue)
@@ -209,8 +146,9 @@ class Search extends Component {
         this.updateWorkoutsRenderedToPage(filteredByDistance)
     }  
 
+
+    //  Change Handler for the Weight Input
     handleWeightInputChange = (value) => {
-        
         const {nameInputValue, liftType} = this.state
         console.log(nameInputValue, liftType, value)
         let filteredByNameArr =  this.filterAllWorkoutsByName(nameInputValue)
@@ -220,6 +158,7 @@ class Search extends Component {
     }
 
 
+    // Filter Distance Values to Dynamically Set Distance Select Box Options
     filterDistancesForInput = (arr, cardioType) => {
         let filteredForDistance = []
         if( cardioType === "All") {
@@ -228,9 +167,7 @@ class Search extends Component {
                     if (arr[i][k].type === "Cardio") {
                         filteredForDistance.push(arr[i][k].distance)
                     } 
-                    
                 }
-                
             }
          } else {
             for (let i = 0; i < arr.length; i++) {
@@ -238,25 +175,23 @@ class Search extends Component {
                     if (arr[i][k].type === "Cardio" && arr[i][k].type_value === cardioType) {
                         filteredForDistance.push(arr[i][k].distance)
                     } 
-                    
                 }
-                
             }
         }
         return distanceMultiplesRemoved(filteredForDistance)
     }
 
+
+    // Filter Weight Vaules for Weight Select Box
     filterWeightForInput = (arr, liftType) => {
         let filteredForWeight = []
-        if( liftType === "All") {
+        if(liftType === "All") {
             for (let i = 0; i < arr.length; i++) {
                 for (let k = 0; k < arr[i].length; k++) {
                     if (arr[i][k].type === "Weights") {
                         filteredForWeight.push(arr[i][k].weight)
                     } 
-                    
                 }
-                
             }
          } else {
             for (let i = 0; i < arr.length; i++) {
@@ -264,14 +199,14 @@ class Search extends Component {
                     if (arr[i][k].type === "Weights" && arr[i][k].type_value === liftType) {
                         filteredForWeight.push(arr[i][k].weight)
                     } 
-                    
                 }
-                
             }
         }
         return filteredForWeight
     }
 
+
+    // Change Handler for Cardio Type Select Box
     handleCardioTypeChange = (value) => {
         const { selectedWorkoutName} = this.state
         let filteredByNameArr =  this.filterAllWorkoutsByName(selectedWorkoutName)
@@ -281,10 +216,11 @@ class Search extends Component {
         this.setState({
             cardioType: value,
             distanceValuesArray: filteredDistanceValues
-    
         })
     }
 
+
+    // Change Handler for Lift Type Select Box
     handleLiftTypeChange  = (value) => {
         const { selectedWorkoutName} = this.state
         let filteredByNameArr =  this.filterAllWorkoutsByName(selectedWorkoutName)
@@ -299,13 +235,15 @@ class Search extends Component {
         })
     }
 
+
+    // Click Handler for Cardio/Weights Buttons
     handleTypeClick = (trueVal, falseVal) => {
         const { selectedWorkoutName, cardioType, liftType } = this.state
         this.setState({
             [trueVal]: true,
             [falseVal]: false,
         })
-        if (trueVal === "cardioClicked") {
+        if(trueVal === "cardioClicked") {
           let filteredByNameArr =  this.filterAllWorkoutsByName(selectedWorkoutName)
           let filteredByType = this.filterAllWorkoutsByCardioType(filteredByNameArr, cardioType)
           let filteredDistanceValues = this.filterDistancesForInput(filteredByNameArr, "All")
@@ -313,41 +251,42 @@ class Search extends Component {
           this.setState({
               distanceValuesArray: filteredDistanceValues,
           })
-        }else {
+        } else {
             let filteredByNameArr =  this.filterAllWorkoutsByName(selectedWorkoutName)
             let liftValuesForLiftTypeInput = liftTypeMultiplesRemoved(filteredByNameArr)
             let filteredByType = this.filterAllWorkoutsByLiftType(filteredByNameArr, liftType)
             let filteredWeightValues = this.filterWeightForInput(filteredByNameArr, "All")
           this.updateWorkoutsRenderedToPage(filteredByType)
-
             this.setState({
                 liftTypesArray: liftValuesForLiftTypeInput,
                 weightValuesArray: filteredWeightValues
             })
         }
-
-
     }
 
+
+    // Function to Set State with the Current Updated Array
     updateWorkoutsRenderedToPage = (arr) => {
         this.setState({
             workoutsRenderedToPage: arr
         })
     }
 
+
+    // Function to Get All Workouts for Current User from the Database
     getAllWorkouts = () => {
         if (this.props.currentUser !== null) {
-        const { id } = this.props.currentUser
-        axios.get(`/api/workouts/getAll/${id}`).then(res => {
-       let sortedByDate = dateSorter(res.data)
+            const { id } = this.props.currentUser
+            axios.get(`/api/workouts/getAll/${id}`).then(res => {
+                let sortedByDate = dateSorter(res.data)
        
-        this.setState({
-            allWorkoutsFromDatabase: sortedByDate,
-        })
-        this.updateWorkoutsRenderedToPage(sortedByDate)
-      })
+                this.setState({
+                    allWorkoutsFromDatabase: sortedByDate,
+                })
+                this.updateWorkoutsRenderedToPage(sortedByDate)
+            })
         }
-      }
+    }
     
 
   render() {
@@ -434,27 +373,6 @@ class Search extends Component {
                         <option value="Cycle">Cycle</option>
                     </select>
                 </div>
-                
-                {/* <div className="cardio-activities">
-                      <button onClick={this.handleRunClick} className={this.state.run? "run-black": "run"}>Run</button>
-                      <button onClick={this.handleSwimClick} className={this.state.swim? "swim-black": "swim"}>Swim</button>
-                      <button onClick={this.handleCycleClick} className={this.state.cycle? "cycle-black": "cycle"}>Cycle</button>
-                      {/* <button className="cycle">Cycle</button> */}
-                {/* </div> */}
-
-                {/* --------------------------------------------------------------------- */}
-                {/* <select onChange={(e) => this.handleWorkoutNameChange(e.target.value)} name="name" >
-                        <option value="All">All</option>
-                        {allWorkoutsFromDatabase?
-                            allWorkoutsFromDatabase.map((elem, i) => {
-                                return <option key={i} value={elem[0].name}>{elem[0].name}</option> 
-                            })
-                            :
-                            null
-                        }
-                </select> */}
-                {/* ------------------------------------------------------------------------ */}
-                  
                   <div className="cardio-values">
                       <div className="type-value">   
                           <div className="distance">
@@ -465,13 +383,6 @@ class Search extends Component {
                           </select>
                           </div>     
                       </div>
-
-                    {/* //   <div className="type-value">   
-                    //       <div className="time">
-                    //       <h3 className="type">Time:</h3>
-                    //       <input onChange={this.handleTimeChange} value={this.state.timeValue} type="text"/>
-                    //       </div>     
-                    //   </div> */}
                   </div>
               </div>
 
@@ -505,6 +416,7 @@ class Search extends Component {
     )
   }
 }
+
 const mapStateToProps = (state) => {
     const {currentUser } = state 
     return {
@@ -513,21 +425,4 @@ const mapStateToProps = (state) => {
 }
 
 
-
 export default connect(mapStateToProps)(Search);
-
-
-
-// <select onChange={this.handleWeightsTypeChange}>
-//                             <option value={bp}>Bench Press</option>
-//                             <option value={ip}>Incline Press</option>
-//                             <option value={sp}>Shoulder Press</option>
-//                             <option value="Squat">Squat</option>
-//                             <option value={dl}>Deatlift</option>
-//                             <option value={pu}>Push-Ups</option>
-//                             <option value={pul}>Pull-Ups</option>
-//                             <option value={bor}>Bent Over Row</option>
-//                             <option value="Curl">Curl</option>
-//                             <option value={cr}>Calf Raise</option>
-//                             <option value="Lunge">Lunge</option>
-//                         </select>

@@ -18,19 +18,17 @@ class App extends Component {
   
 
   handleRegisterClick = (userObj) => {
-    // console.log("handle register click",userObj)
     this.props.currentUserToState(userObj[0])
     this.setState({
-      loggedIn: true
+      loggedIn: false
     })
-    // console.log("handle register click",userObj)
     
   }
 
-  toDashboard = () => {
-    console.log('i got hit')
-    window.location = '/dashboard'
-  }
+  // toDashboard = () => {
+  //   console.log('i got hit')
+  //   window.location = '/dashboard'
+  // }
 
    
   render() {
@@ -41,7 +39,6 @@ class App extends Component {
         <Login loginFunc={this.handleRegisterClick}/>
         :
 
-        // console.log("wtf")
         // <Route path="/dashboard">
         <Dashboard />
       }

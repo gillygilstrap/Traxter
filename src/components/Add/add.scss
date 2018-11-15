@@ -22,18 +22,40 @@
         display: flex;
         justify-content: space-between;
         margin: 20px auto 0 auto;
+        @media screen and (max-width: 376px){
+            width: 74%;
+        }
+        
     }
 
     .workout-btns button {
+        text-align: center;
         width: 45%;
         height: 40px;
         border: none;
         border-radius: 1px;
         font-family: $lato;
         font-weight: bold;
-        background: $bigGreen;
+        background: bigGreen;
         box-shadow: 0px 2px 10px $black;
         letter-spacing: 1px;
+        font-size: 20px;
+        @media screen and (max-width: 502px){
+            font-size: 18px
+        }
+        @media screen and (max-width: 458px){
+            font-size: 16px
+        }
+        @media screen and (max-width: 414px){
+            height: 50px;
+            font-size: 18px;
+        }
+        @media screen and (max-width: 376px){
+            width: 48%;
+        }
+        @media screen and (max-width: 360px){
+            font-size: 16px;
+        }
     }
     .workout-name-div {
         display: flex;
@@ -97,7 +119,13 @@
     .mid-box-child button {
         @include type-button;
         width: 32%;
-    
+        @media screen and (max-width: 376px){
+            font-size: 14px;
+            padding: 0
+        }
+        @media screen and (max-width: 360px){
+            font-size: 12px;
+        }
     }
     .type-toggle-div, .date-toggle-div {
         width: 100%;
@@ -158,7 +186,12 @@
     .cardio-activities button {
         @include type-button;
         width: 25%;
+        @media screen and (max-width: 376px){
+            font-size: 14px;
+            padding: 0
+        }
     }
+    
     // .cardio-activities button.run {
     //     background: $black;
     // }
@@ -294,6 +327,8 @@
         flex-direction: column;
         justify-content: center;
     }
+    
+    
    #completed-button {
         margin-top: 18px;
     }
@@ -307,7 +342,10 @@
         border-radius: 1px;
         background: $bigGreen;
         box-shadow: 0px 2px 10px $black;
-
+        @media screen and (max-width: 375px){
+            font-size: 19px;
+            height: 40px;
+        }
     }
 
     .workout-content-container {

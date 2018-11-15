@@ -27,11 +27,13 @@ app.post('/api/register', userController.createNewUser)
 app.post('/api/login', userController.loginUser)
 app.put('/api/users/:id', userController.updateUser)
 const port = 4000
-app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`)
-});
 
 const path = require('path')
 app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+    console.log('hit')
+    res.sendFile(path.join(__dirname, '../build/index.html'));
 })
+
+app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`)
+});
