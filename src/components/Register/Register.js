@@ -62,12 +62,12 @@ import axios from 'axios';
         <input onChange={(e) => this.handleInputChange('emailInput', e.target.value)} type="email" className="register-password-input" placeholder="Email"/>
 
         
-
+        {/* // Temporary removal
         <p className="register-theme">Pick A Color Theme</p>
         <div className="theme-btns">
         <button className="light-btn">Light</button>
         <button className="dark-btn">Dark</button>
-        </div>
+        </div> */}
         
         {/* <button onClick={() => this.props.loginFunc()}className="register-button">Register</button> */}
         <button onClick={this.handleRegisterClicked} className="register-button">Register</button>

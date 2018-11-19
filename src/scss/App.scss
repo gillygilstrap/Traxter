@@ -3,6 +3,52 @@
 
 
 .app {
-    width: 100%; 
+    width: 100%;
+}
+@media screen and (min-width: 675px) and (max-width: 800px){
+    .login-container, .register-container{
+        margin-top: 100px;
+    }
+}
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+    .login-container{
+        margin-top: 140px;
+    }
 }
 
+@media screen and (min-width: 1025px){
+    body {
+        background-image: url(../assets/bodybuilding_hero.jpg) !important;
+        background-size: cover!important;
+        // background-position: center !important;
+    }
+    .app {
+        // background: yellow;
+        margin-top: 0
+
+    }
+    .login-main, .register-main {
+        max-width: 1024px;
+        margin: 0 auto;
+        // background-color: yellow !important;
+        border: 5px solid $bigGreen;
+        max-height: 80vh;
+        min-height: 1000px;
+        margin-top: 10vh;
+        box-shadow: 0 6px 20px $black;
+        background: #4c4947e1!important;
+        
+    }
+    .login-container {
+        padding-top: 250px;
+        
+    }
+    
+}
+// @media screen and (min-width: 1025px) and (max-width: 1366px){
+//     .login-main {
+//         max-width: 1024px;
+//         margin: 0 auto;
+//         background-color: yellow !important;
+//     }
+// }

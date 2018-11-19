@@ -18,21 +18,22 @@ class App extends Component {
   
 
   handleRegisterClick = (userObj) => {
+    // console.log("Login Hit")
     this.props.currentUserToState(userObj[0])
     this.setState({
-      loggedIn: false
+      loggedIn: true
     })
     
   }
 
-  // toDashboard = () => {
-  //   console.log('i got hit')
-  //   window.location = '/dashboard'
-  // }
+  toDashboard = () => {
+    console.log('i got hit')
+    window.location = '/dashboard'
+  }
 
    
   render() {
-   
+   console.log(this.state.loggedIn)
     return (
       <div className="app">
       {!this.state.loggedIn?
