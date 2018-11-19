@@ -49,9 +49,15 @@ import axios from 'axios';
   }
 
 
-   handleRegisterClick = (prevState) => {
+   handleRegisterClick = () => {
      this.setState({
-       registerClicked: !prevState.registerClicked
+       registerClicked: true
+     })
+   }
+
+   handleRegisterToFalse = () => {
+     this.setState({
+       registerClicked: false
      })
    }
 
@@ -70,16 +76,17 @@ import axios from 'axios';
           <input onChange={(e) => this.handleInputChange('loginUserInput', e.target.value)} type="text" className="login-username-input" placeholder="Username"/>
           <input onChange={(e) => this.handleInputChange('loginPasswordInput', e.target.value)} type="password" className="login-password-input" placeholder="Password"/>
           <button onClick={() => this.handleLoginClick()} className="login-button">Login</button>
-          <Link to="/login/register"><button id="register-Button" onClick={this.handleRegisterClick} className="register-button">Register</button></Link>
-         {/* <button id="register-Button" onClick={this.handleRegisterClick} className="register-button">Register</button> */}
+          {/* <Link to="/login/register"><button id="register-Button" onClick={this.handleRegisterClick} className="register-button">Register</button></Link> */}
+         <button id="register-Button" onClick={this.handleRegisterClick} className="register-button">Register</button>
         </div>
       </div>
       )
     } else {
       return (
-       <Route path="/login/register" 
-        render={(props) => <Register  {...props} loginFunc={this.props.loginFunc} />}
-        />
+        <Register  registerFunc={this.handleRegisterToFalse} loginFunc={this.props.loginFunc} />
+      /* //  <Route path="/login/register" 
+      //   render={(props) => <Register  {...props} loginFunc={this.props.loginFunc} />}
+      //   /> */
       )
     }
   }

@@ -42,6 +42,7 @@ import axios from 'axios';
     
   }
 
+ 
   
   render() {
     const { usernameInput, passwordInput} = this.state
@@ -71,6 +72,7 @@ import axios from 'axios';
         
         {/* <button onClick={() => this.props.loginFunc()}className="register-button">Register</button> */}
         <button onClick={this.handleRegisterClicked} className="register-button">Register</button>
+        <button onClick={() => this.props.registerFunc()} className="register-button register-login-btn">Back To Login</button>
         </div>
       </div>
     )
