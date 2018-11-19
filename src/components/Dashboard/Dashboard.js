@@ -20,7 +20,8 @@ class Dashboard extends Component {
       workout: [],
       editClicked: false,
       addClicked: false,
-      profileClicked: false
+      profileClicked: false,
+      searchClicked: false
     }
     this.refresh = this.refresh.bind(this);
   }
@@ -54,7 +55,8 @@ class Dashboard extends Component {
   }
   handleProfileToFalse = () => {
     this.setState({
-      profileClicked: false
+      profileClicked: false,
+      searchedClicked: false
     })
   }
   handleEditStateToFalse = () => {
@@ -93,12 +95,21 @@ class Dashboard extends Component {
       addClicked: false
     })
   }
+  handleSearchClicked = () => {
+    this.setState({
+      searchClicked: true,
+      editClicked: false, 
+      profileClicked: false,
+      addClicked: false
+    })
+  }
 
   dashboardStateReset = () => {
     this.setState({
       addClicked: false,
       profileClicked: false,
-      editClicked: false
+      editClicked: false,
+      searchClicked: false
     })
   }
 
@@ -111,13 +122,15 @@ class Dashboard extends Component {
     // console.log(this.props.currentUser)
 
     if (this.state.addClicked) {
-      return <Add profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} addStateChange={this.handleAddStateToFalse}/>
+      return <Add profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} addStateChange={this.handleAddStateToFalse} searchStateToTrue={this.handleSearchClicked}/>
       // <AddEdit profileStateToTrue={this.handleProfileClicked} addStateChange={this.handleAddStateToFalse}/>
     } else if (this.state.editClicked) {
-      return <Edit profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} handleEditStateToFalse={this.handleEditStateToFalse}/>
+      return <Edit profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} handleEditStateToFalse={this.handleEditStateToFalse} searchStateToTrue={this.handleSearchClicked}/>
       // <AddEdit editStateToTrue={this.handleEditClicked} profileStateToTrue={this.handleProfileClicked}/>
     } else if(this.state.profileClicked){
-      return <Profile profileStateToTrue={this.handleProfileClicked} profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked} dashboardStateReset={this.dashboardStateReset}/>
+      return <Profile profileStateToTrue={this.handleProfileClicked} profileStateToFalse={this.handleProfileToFalse} addStateToTrue={this.handleAddClicked} dashboardStateReset={this.dashboardStateReset} searchStateToTrue={this.handleSearchClicked}/>
+    } else if (this.state.searchClicked) {
+      return <Search profileStateToTrue={this.handleProfileClicked} dashboardStateReset={this.dashboardStateReset} />
     } else {
         const {workout} =  this.state
       // console.log(workout)
@@ -134,7 +147,7 @@ class Dashboard extends Component {
 
             <div className="dashboard-btns-box">
               <button onClick={this.handleAddClicked} className="dashboard-add-btn">Add Workout</button>
-              <button className="dashboard-search-btn">Search Workouts</button>
+              <button onClick={this.handleSearchClicked} className="dashboard-search-btn">Search Workouts</button>
             </div>
 
           </div>
@@ -149,7 +162,7 @@ class Dashboard extends Component {
           
           <div>{mappedWorkout}</div>
           }
-            <Search />
+           
             
           
         </div>
@@ -172,3 +185,43 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {setEditToFalse})(Dashboard);
 
+
+
+
+// else {
+//   const {workout} =  this.state
+// // console.log(workout)
+// // console.log(this.state.products)
+// const mappedWorkout =  workout.map((workout,i) => {
+//   // console.log(workout[0].date)
+//   return <WorkoutCard editStateToTrue={this.handleEditClicked} refresh={this.refresh} key={i} workout={workout}/>
+// })
+// // console.log(/mappedWorkout)
+// return (
+//   <div className="dashboard-main">
+//     <div className="dash-fixed-header">
+//       <DashTop profileStateToTrue={this.handleProfileClicked}/>
+
+//       <div className="dashboard-btns-box">
+//         <button onClick={this.handleAddClicked} className="dashboard-add-btn">Add Workout</button>
+//         <button className="dashboard-search-btn">Search Workouts</button>
+//       </div>
+
+//     </div>
+//     <div className="clear-fix"></div>
+//     <h2 className="performance-feed">Performance Feed</h2>
+
+    
+
+//      {!this.state.workout.length?
+//     <button className="big-add-button" onClick={this.handleAddClicked}>Add a Workout!</button> 
+//     :
+    
+//     <div>{mappedWorkout}</div>
+//     }
+//       <Search />
+      
+    
+//   </div>
+// )
+// }

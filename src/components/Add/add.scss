@@ -28,9 +28,11 @@
         
     }
 
-    .workout-btns button {
-        text-align: center;
-        width: 45%;
+    .workout-btns button.new-workout {
+        // text-align: center;
+        margin: 0 auto;
+        // width: 45%;
+        width: 100px;
         height: 40px;
         border: none;
         border-radius: 1px;
@@ -191,6 +193,9 @@
             padding: 0
         }
     }
+   
+    
+   
     
     // .cardio-activities button.run {
     //     background: $black;

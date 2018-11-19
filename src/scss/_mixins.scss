@@ -42,7 +42,8 @@
         width: 94%;
         margin: 0 auto;
         padding: 0 8px 4px 8px;
-        height: 45px; 
+        min-height: 45px; 
+        // height: 45px; 
     }
     .title-row-div .completed{
         background: $bigGreen;

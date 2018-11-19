@@ -17,6 +17,8 @@
         border-radius: 3px;
         letter-spacing: 0.5px;
     }
+
+    
     .profile-box {
         display: flex;
         align-items: center;
@@ -27,7 +29,7 @@
         padding: 8px 8px 8px 8px;
         background: $black;
         box-shadow: 0px 0px 1px $bigGreen;
-
+        overflow: none;
 
     }
     
@@ -72,7 +74,7 @@
     .profile-button-div button{
         width: 60%;
         height: 48px;
-        margin: 18px auto 0 auto;
+        margin: 18px auto 40px auto;
         font-family: $lato;
         font-size: 24px;
         font-weight: bold;
@@ -89,6 +91,93 @@
     
 
     // }
-  
+  @media screen and  (max-width: 374px) {
+      .profile-box p {
+          font-size: 16px;
+      }
+      .profile-box p.lean-body-mass {
+          font-size: 22px;
+      }
+  }
+  @media screen and (min-width: 530px) {
+      .profile-button {
+          max-width: 320px;
+      }
+  }
+  @media screen and (min-width: 575px) {
+      .performance-feed {
+          font-size: 60px;
+        margin-bottom: 40px;
+      }
+      .profile-box {
+          height: 60px;
+          box-shadow: 0px 0px 3px $bigGreen;
+      }
+      .profile-box h3 {
+          font-size: 30px;
+      }
+      .profile-box p {
+          font-size: 28px;
+      }
+      .profile-box input {
+          height: 40px;
+          font-size: 28px;
+          font-weight: bold;
+      }
+      
+  }
+  @media screen and (min-width: 700px) {
+      .performance-feed {
+          max-width: 560px;
+      }
+      .profile-box-main {
+          max-width: 600px;
+      }
+  }
+  @media screen and ( min-width: 1024px) {
+    .performance-feed {
+        font-size: 90px;
+      margin-bottom: 40px;
+    }
+    .profile-box {
+        height: 80px;
+        
+        // box-shadow: 0px 0px 6px $bigGreen;
+        padding: 16px;
+    }
+    .profile-box h3 {
+        font-size: 40px;
+    }
+    .profile-box p {
+        font-size: 36px;
+    }
+    .profile-box input {
+        height: 54px;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .profile-box-main {
+        max-width: 800px;
+    }
+    .profile-button-div button.profile-button {
+        height: 72px;
+        font-size: 36px;
+        letter-spacing: 2px;
+        text-shadow: 1px 3px 4px $black
+    }
+    
+
+    @media screen and ( min-width: 1025px) {
+        .profile-box-main {
+            background: rgba(214, 214, 214, 0.445);
+            padding: 16px;
+            border: 3px solid $bigGreen;
+        }
+        .profile-box h3 {
+            color: $lightGrey;
+        }
+    }
+    
+  }
     
 }

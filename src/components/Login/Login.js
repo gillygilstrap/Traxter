@@ -32,11 +32,11 @@ import axios from 'axios';
   }
 
   handleLoginClick = () => {
-    console.log("I got hit")
+    // console.log("I got hit")
     const username = this.state.loginUserInput;
     const password = this.state.loginPasswordInput;
     axios.post('/api/login', {username: username, password: password}).then( res => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.message === 'Username Does Not Exist in Database') {
         alert(res.data.message)
       }else  if (res.data.message === 'Username and Password do not match'){

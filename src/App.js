@@ -33,7 +33,7 @@ class App extends Component {
 
    
   render() {
-   console.log(this.state.loggedIn)
+  //  console.log(this.state.loggedIn)
     return (
       <div className="app">
       {!this.state.loggedIn?

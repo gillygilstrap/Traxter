@@ -313,10 +313,10 @@ class Search extends Component {
     return (
       <div className="dashboard-main">
         <div className="dash-fixed-header">
-        <DashTop profileStateToTrue={this.handleProfileClicked}/>
+        <DashTop profileStateToTrue={this.props.profileStateToTrue}/>
 
         <div className="dashboard-btns-box">
-            <button onClick={this.handleAddClicked} className="dashboard-add-btn">Add Workout</button>
+            <button onClick={() => this.props.dashboardStateReset()} className="dashboard-add-btn">Back To Dashboard</button>
             <button className="dashboard-search-btn">Search Workouts</button>
         </div>
 

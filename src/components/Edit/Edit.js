@@ -423,7 +423,7 @@ class Add extends Component {
                     this.props.dashboardStateReset()
                     this.props.setEditToFalse()
                     }} className="dashboard-add-btn">Back To Dashboard</button>
-                <button className="dashboard-search-btn">Search Workouts</button>
+                <button onClick={() => this.props.searchStateToTrue()} className="dashboard-search-btn">Search Workouts</button>
             </div>
 
             </div>
@@ -613,7 +613,7 @@ class Add extends Component {
             </div>
             <div className={this.state.workoutEmpty? "hide-me": "workout-button-box"}>
                     <button onClick={this.saveChanges}className="send-to-feed">Save Changes</button>
-                    <button className="save-as-template">Save As Template</button>
+                    {/* <button className="save-as-template">Save As Template</button> */}
                     <button onClick={this.clearWorkout} className="clear">Clear</button>
                 </div>
         </div>

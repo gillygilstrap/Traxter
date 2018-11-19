@@ -301,7 +301,7 @@ class Add extends Component {
 
             <div className="dashboard-btns-box">
                 <button onClick={() => this.props.dashboardStateReset()} className="dashboard-add-btn">Back To Dashboard</button>
-                <button className="dashboard-search-btn">Search Workouts</button>
+                <button onClick={() => this.props.searchStateToTrue()} className="dashboard-search-btn">Search Workouts</button>
             </div>
 
             </div>
@@ -311,7 +311,7 @@ class Add extends Component {
 
             <div className="workout-btns">
                 <button onClick={this.newWorkoutClick} className="new-workout">New Workout</button>
-                <button className="my-templates">My Templates</button>
+                {/* <button className="my-templates">My Templates</button> */}
             </div>
 
             
@@ -474,7 +474,7 @@ class Add extends Component {
             </div>
             <div className={this.state.workoutEmpty? "hide-me": "workout-button-box"}>
                     <button onClick={this.sendToFeed}className="send-to-feed">Send To Feed</button>
-                    <button className="save-as-template">Save As Template</button>
+                    {/* <button className="save-as-template">Save As Template</button> */}
                     <button onClick={this.clearWorkout} className="clear">Clear</button>
                 </div>
         </div>

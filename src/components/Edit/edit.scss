@@ -301,7 +301,9 @@
         border-radius: 1px;
         background: $bigGreen;
         box-shadow: 0px 2px 10px $black;
-
+        @media screen and (max-width:330px) {
+            width: 55%!important;
+        }
     }
 
     .workout-content-container {

@@ -111,7 +111,7 @@ import { currentUserToState } from '../../ducks/reducer';
 
           <div className="dashboard-btns-box">
               <button onClick={() => this.props.dashboardStateReset()} className="dashboard-add-btn">Back To Dashboard</button>
-              <button className="dashboard-search-btn">Search Workouts</button>
+              <button onClick={() => this.props.searchStateToTrue()} className="dashboard-search-btn">Search Workouts</button>
           </div>
 
         </div>

@@ -18,9 +18,13 @@
 
 @media screen and (min-width: 1025px){
     body {
+        height: 100vh;
         background-image: url(../assets/bodybuilding_hero.jpg) !important;
         background-size: cover!important;
-        // background-position: center !important;
+        background-repeat: no-repeat!important;
+        overflow: hidden;
+
+        // background-position: top;
     }
     .app {
         // background: yellow;
