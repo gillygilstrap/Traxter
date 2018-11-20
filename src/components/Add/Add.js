@@ -453,7 +453,7 @@ class Add extends Component {
                     }</h4>
                         
                     </div>
-                    <div onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</div>
+                    <div id="completed-toggle" onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</div>
                     {/* <button onClick={this.updateCompletedClick} className={this.state.completed? "completed": "out-of-site"}>Completed</button> */}
                 </div>
                 
