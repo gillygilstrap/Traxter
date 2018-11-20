@@ -26,7 +26,7 @@ return (
                 <h4 className="workout-date">{useDate}</h4>
                 
             </div>
-            {completed? <div className="completed">Completed</div>: <div></div>}
+            {completed? <div id="completed-btn" className="completed">Completed</div>: <div></div>}
             {/* <div className={completed? "completed": "out-of-site"}>Completed</div> */}
         </div>
         <div className="workout-items-box">
@@ -63,8 +63,8 @@ return (
 
         <div className="dashboard-button-box">
                 
-                <button onClick={() => props.editWorkout(props.workout)} className="dashboard-edit">Edit</button>
-                <button onClick={() => handleDeleteClick(user_id, workout_id)}className="dashboard-delete">Delete</button>
+                <button id="dash-edit-btn" onClick={() => props.editWorkout(props.workout)} className="dashboard-edit">Edit</button>
+                <button id="dash-delete-btn" onClick={() => handleDeleteClick(user_id, workout_id)}className="dashboard-delete">Delete</button>
                 
         </div>
     </div>
