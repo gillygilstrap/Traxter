@@ -344,6 +344,23 @@ class Search extends Component {
                 
                     <h3 className="type">Type:</h3>
                     {
+                        !this.state.cardioClicked && !this.state.weightsClicked?
+                        <div className="type-toggle-div">
+                        <button  onClick={() => this.handleTypeClick("cardioClicked", "weightsClicked")} className="cardio">Cardio</button>
+                        <button onClick={() => this.handleTypeClick("weightsClicked", "cardioClicked")} className="weights">Weights</button>
+                        </div>
+                        : this.state.cardioClicked?
+                        <div className="type-toggle-div">
+                        <button id='cardio-black' onClick={() => this.handleTypeClick("cardioClicked", "weightsClicked")} className="cardio selected">Cardio</button>
+                        <button  onClick={() => this.handleTypeClick("weightsClicked", "cardioClicked")} className="weights selected">Weights</button>
+                        </div>
+                        :
+                        <div className="type-toggle-div">
+                        <button onClick={() => this.handleTypeClick("cardioClicked", "weightsClicked")} className="cardio ">Cardio</button>
+                        <button id='weights-black' onClick={() => this.handleTypeClick("weightsClicked", "cardioClicked")} className="weights selected">Weights</button>
+                        </div>
+                    }
+                    {/* {
                         this.state.cardio?
                         <div className="type-toggle-div">
                         <button id='cardio-black' onClick={() => this.handleTypeClick("cardioClicked", "weightsClicked")} className="cardio selected">Cardio</button>
@@ -354,7 +371,7 @@ class Search extends Component {
                         <button onClick={() => this.handleTypeClick("cardioClicked", "weightsClicked")} className="cardio ">Cardio</button>
                         <button id='weights-black' onClick={() => this.handleTypeClick("weightsClicked", "cardioClicked")} className="weights selected">Weights</button>
                         </div>
-                    }
+                    } */}
                 </div>
             </div>
             
@@ -365,7 +382,7 @@ class Search extends Component {
            <div className={cardioClicked? "activities-toggle-div": "hide-me" }>
 
                 <div className="cardio-activities-box">
-                    <h3 className="type">Type:</h3>
+                    <h3 className="type">Cardio Type:</h3>
                     <select onChange={(e) => this.handleCardioTypeChange(e.target.value)}name="" id="">
                         <option value="All">All</option>
                         <option value="Run">Run</option>
@@ -398,7 +415,7 @@ class Search extends Component {
 
                 <div className="lift-values">
                     <div className="lift-value">   
-                        <div className="lift-weight">
+                        <div className="lift-weight-box">
                             <h3 className="lift-weight">Weight:</h3>
                             <select onChange={(e) => this.handleWeightInputChange(e.target.value)} name="" id="">
                                 <option value="All">All</option>
