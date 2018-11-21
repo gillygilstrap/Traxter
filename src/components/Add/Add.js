@@ -317,7 +317,7 @@ class Add extends Component {
             
             <div className="workout-name-div">
                 <h3>Workout Name:</h3>
-                <input onChange={this.handleWorkoutNameChange} value={this.state.workoutName} maxLength="15" placeholder="Max 15 Characters" type="text"/>
+                <input id="name-input" onChange={this.handleWorkoutNameChange} value={this.state.workoutName} maxLength="15" placeholder="Max 15 Characters" type="text"/>
             </div>
 
             <div className="mid-box">
