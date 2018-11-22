@@ -149,7 +149,6 @@ class Dashboard extends Component {
               <button onClick={this.handleAddClicked} className="dashboard-add-btn">Add Workout</button>
               <button onClick={this.handleSearchClicked} className="dashboard-search-btn">Search Workouts</button>
             </div>
-
           </div>
           <div className="clear-fix"></div>
           <h2 className="performance-feed">Performance Feed</h2>

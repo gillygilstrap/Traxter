@@ -70,26 +70,3 @@ export default connect(mapStateToProps)(DashTop);
 
 
 
-// function DashTop(props) {
-//   console.log(props)
-
-//   return (
-//     <div className="dash-top">
-//       <div className="dash-top-container">
-//         <h2 onClick={() => props.profileStateToTrue()} className="dash-top-user">{props.username}</h2>
-//         <i className="fas fa-running"></i>
-//         <h1>Tra<span className="big-x">X</span>ter</h1>
-//       </div>
-//     </div>
-//   )
-
-// }
-// const mapStateToProps = (state) => {
-//   const { currentUser } = state 
-//     return {
-//       currentUser
-//     }
-  
-// }
-
-// export default connect(mapStateToProps)(DashTop);

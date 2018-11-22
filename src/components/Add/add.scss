@@ -385,6 +385,11 @@
             margin-bottom: 40px;
             max-width: 460px;
         }
+        @media screen and (min-width: 1024px) {
+            font-size: 90px;
+            margin-top: 60px;
+            max-width: 700px;
+        }
     }
     .add-workout-button-div button.add-workout-item {
         @media scren and (min-width: 376px) {

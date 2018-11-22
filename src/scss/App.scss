@@ -1,6 +1,8 @@
 @import '_variables';
 
-
+* button:hover, select:hover {
+    cursor: pointer;
+}
 
 .app {
     width: 100%;
@@ -49,6 +51,11 @@
     .login-container {
         padding-top: 250px;
         
+    }
+    .dash-fixed-header {
+        @media screen and (min-width: 1025px) {
+            box-shadow: none;
+        }
     }
     
 }

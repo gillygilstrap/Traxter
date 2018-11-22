@@ -44,3 +44,34 @@
     }
 
 }
+.dash-top {
+    @media screen and (min-width: 1024px) {
+        height: 80px;
+        width: 1024px;
+        margin: 0 auto;
+        background: $black;
+        border-bottom: 1px solid $darkGrey;
+    }
+    @media screen and (min-width: 1025px) {
+        width: 100vw;
+        max-width: 1200px;
+        box-shadow: none;
+    }
+}
+
+.dash-top-container {
+    @media screen and (min-width: 1024px) {
+        max-width: 90%;
+        .dash-top-user {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 50px;
+            margin-top: 24px;
+        }
+        i {
+            visibility: hidden;
+        }
+    }
+}

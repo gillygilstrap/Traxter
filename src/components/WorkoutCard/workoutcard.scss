@@ -41,7 +41,12 @@
         border-radius: 2px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.308);
         text-shadow: 0 2px 2px $black;
+        
     }
+    .dashboard-button-box button:hover {
+        cursor: pointer;
+    }
+    
     .green {
         color: green;
     }
