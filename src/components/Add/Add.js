@@ -329,12 +329,12 @@ class Add extends Component {
                         this.state.today?
                         <div className='date-toggle-div'>
                             <button id="today-black" onClick={this.handleTodayClick} className="today">Today</button>
-                            <button onClick={this.handleFutureClick} className="future">Future</button>
+                            <button onClick={this.handleFutureClick} className="future">Custom</button>
                         </div>
                         :
                         <div className='date-toggle-div'>
                             <button onClick={this.handleTodayClick} className="today">Today</button>
-                            <button id="future-black" onClick={this.handleFutureClick} className="future">Future</button>
+                            <button id="future-black" onClick={this.handleFutureClick} className="future">Custom</button>
                         </div>     
                     }
                 </div>

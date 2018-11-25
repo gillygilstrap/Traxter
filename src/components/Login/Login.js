@@ -37,7 +37,8 @@ import axios from 'axios';
     const password = this.state.loginPasswordInput;
     axios.post('/api/login', {username: username, password: password}).then( res => {
       // console.log(res.data)
-      if (res.data.message === 'Username Does Not Exist in Database') {
+      if (res.data.message === 'Username Does Not Exist. Please Click Register To Create an Account.') {
+      // if (res.data.message === 'Username Does Not Exist in Database') {
         alert(res.data.message)
       }else  if (res.data.message === 'Username and Password do not match'){
         alert(res.data.message)

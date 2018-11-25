@@ -414,7 +414,7 @@ class Add extends Component {
 
     return (
         
-        <div className="add-main">
+        <div id="edit-main" className="add-main">
             <div className="dash-fixed-header">
             <DashTop setEditToFalse={this.props.setEditToFalse} profileStateToTrue={this.props.profileStateToTrue}/>
 
@@ -429,6 +429,7 @@ class Add extends Component {
             </div>
 
             <div className="clear-fix"></div>
+            <div id="overlay-box">
             <h2 className="performance-feed">Edit Workout</h2>
 
             {/* <div className="workout-btns">
@@ -616,8 +617,14 @@ class Add extends Component {
                     {/* <button className="save-as-template">Save As Template</button> */}
                     <button onClick={this.clearWorkout} className="clear">Clear</button>
                 </div>
+
+            {/* overlay div     */}
+            </div>
         </div>
             
+
+            
+           
         
 
     )

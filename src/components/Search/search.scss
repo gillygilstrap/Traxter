@@ -199,3 +199,15 @@ select {
         height: 50px;
     }
 }
+
+@media screen and (min-width: 1024px) {
+    #search-main {
+        background-image: url('../../assets/biker.jpg')!important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment:  fixed;
+        overflow: scroll;
+        min-height: 100vh;
+    }
+}

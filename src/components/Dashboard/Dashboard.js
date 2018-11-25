@@ -162,7 +162,7 @@ class Dashboard extends Component {
           <div>{mappedWorkout}</div>
           }
            
-            
+            <div className="footer-box"></div>
           
         </div>
       )

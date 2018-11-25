@@ -348,6 +348,26 @@
     // }
 }
 
+@media screen and (min-width: 1024px) {
+    #overlay-box {
+        background: rgba(0, 0, 0, 0.966);
+        max-width: 1000px;
+        margin: 0 auto;
+        padding-top: 1px;
+        margin-bottom: 20px;
+    }
+    
+    #edit-main {
+        background-image: url('../../assets/leg_press.jpg')!important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-attachment:  fixed;
+        overflow: scroll;
+        min-height: 100vh;
+    }
+}
+
 .dash-fixed-header {
     width: 100%;
     position: fixed;

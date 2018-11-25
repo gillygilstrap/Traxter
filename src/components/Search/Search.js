@@ -311,7 +311,7 @@ class Search extends Component {
       })
 
     return (
-      <div className="dashboard-main">
+      <div id="search-main" className="dashboard-main">
         <div className="dash-fixed-header">
         <DashTop profileStateToTrue={this.props.profileStateToTrue}/>
 
@@ -428,7 +428,7 @@ class Search extends Component {
             </div>
         <div>{workout}</div>
         
-        
+        <div className="footer-box"></div>
     </div>
     )
   }

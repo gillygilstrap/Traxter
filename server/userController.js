@@ -38,7 +38,8 @@ module.exports = {
                     }
                 })
             } else {
-                res.json({message: 'Username Does Not Exist in Database'})
+                res.json({message: 'Username Does Not Exist. Please Click Register To Create an Account.'})
+                // res.json({message: 'Username Does Not Exist in Database'})
             }
         })
     },
