@@ -502,6 +502,10 @@
         }
     }
     .type-value {
+        .distance {
+            margin-left: 0px;;
+        }
+        
         @media screen and (min-width: 1025px) {
             width: 820px;
             margin: 0 auto;       
@@ -635,7 +639,7 @@
         background-attachment:  fixed;
         overflow: scroll;
         min-height: 100vh;
-        
+
         .add-overlay {
             background: rgba(0, 0, 0, 0.603);
             max-width: 1100px;
