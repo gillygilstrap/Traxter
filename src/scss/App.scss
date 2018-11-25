@@ -46,10 +46,11 @@
         margin-bottom: 5vh;
         box-shadow: 0 6px 20px $black;
         background: #4c4947e1!important;
+
         
     }
     .login-main {
-        max-height: 790px;
+        min-height: 790px;
     }
     .login-container {
         padding-top: 250px;
