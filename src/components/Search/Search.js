@@ -322,6 +322,9 @@ class Search extends Component {
 
         </div>
         <div className="clear-fix"></div>
+
+        <div className="search-top-overlay">
+
         <h2 className="performance-feed">Search Workouts</h2>
 
         <div className="name-select-box">
@@ -426,7 +429,14 @@ class Search extends Component {
                 </div>
 
             </div>
+
+            {/* Top-Box-Overlay */}
+        </div>
+        
         <div>{workout}</div>
+
+
+        
         
         <div className="footer-box"></div>
     </div>

@@ -307,6 +307,10 @@ class Add extends Component {
             </div>
 
             <div className="clear-fix"></div>
+
+            <div className="add-overlay">
+
+
             <h2 className="performance-feed">Add a Workout</h2>
 
             <div className="workout-btns">
@@ -479,7 +483,9 @@ class Add extends Component {
                 </div>
         </div>
             
+        {/* overlay div */}
         
+        </div>
 
     )
   }

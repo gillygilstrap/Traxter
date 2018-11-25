@@ -23,7 +23,7 @@
 
 @media screen and (min-width: 1025px){
     body {
-        height: 100vh;
+        max-height: 100vh;
         background-image: url(../assets/bodybuilding_hero.jpg) !important;
         background-size: cover!important;
         background-repeat: no-repeat!important;
@@ -61,6 +61,9 @@
         }
     }
     
+}
+.completed:hover {
+    cursor: pointer
 }
 // @media screen and (min-width: 1025px) and (max-width: 1366px){
 //     .login-main {

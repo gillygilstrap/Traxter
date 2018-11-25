@@ -350,15 +350,16 @@
 
 @media screen and (min-width: 1024px) {
     #overlay-box {
-        background: rgba(0, 0, 0, 0.966);
+        background: rgba(82, 82, 82, 0.63);
         max-width: 1000px;
         margin: 0 auto;
         padding-top: 1px;
         margin-bottom: 20px;
+        box-shadow:0px 0px 6px rgb(0, 0, 0);
     }
     
     #edit-main {
-        background-image: url('../../assets/leg_press.jpg')!important;
+        background-image: url('../../assets/girl_running.jpg')!important;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: right;

@@ -211,3 +211,18 @@ select {
         min-height: 100vh;
     }
 }
+
+@media screen and (min-width: 1024px) {
+    h2 {
+        padding-top: 20px;
+    }
+    .search-top-overlay {
+        width: 100%;
+        background: yellow;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0px 0 20px 0;
+        background: rgba(0, 0, 0, 0.664);
+        margin-bottom: 35px;
+    }
+}
